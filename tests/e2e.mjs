@@ -176,6 +176,98 @@ try {
       validate();
     }
   });
+  await test('flashcards: flip, practice marks, summary and review of missed cards', async () => {
+    const p = await page(390);
+    await openSample(p);
+    const cards = p.locator('#cards');
+    assert((await cards.locator('.fc-word').textContent()) === story.vocabulary[0].headword.full, 'first card wrong');
+    assert(await cards.locator('.fc-gloss').count() === 0, 'meaning should start hidden');
+    await cards.locator('[data-fc="flip"]').click();
+    assert((await cards.locator('.fc-gloss').textContent()) === story.vocabulary[0].gloss, 'flip did not show the meaning');
+    await p.locator('#cards [data-fc="practice"]').click();
+    for (let i = 0; i < story.vocabulary.length; i++) {
+      await p.locator('#cards [data-fc="flip"]').click();
+      await p.locator(`#cards [data-fc="${i < 2 ? 'miss' : 'know'}"]`).click();
+    }
+    const done = await p.locator('#cards .fc-done').textContent();
+    assert(done.includes('مراجعة') || done.includes('راجع'), 'review button missing');
+    await p.locator('#cards [data-fc="review"]').click();
+    assert((await p.locator('#cards .fc-count').textContent()).includes('من ٢'), 'review deck should hold the 2 missed cards');
+    assert(!(await p.locator('#cards').textContent()).toLowerCase().includes('spaced'), 'must not claim spaced repetition');
+    await p.screenshot({ path: join(shots, 'reader-cards-390.png') });
+    await p.context().close();
+  });
+
+  await test('speaking step moves sentence by sentence and explains audio availability', async () => {
+    const p = await page();
+    await openSample(p);
+    const s = p.locator('#speak');
+    assert((await s.locator('.speak-line').textContent()) === story.readings[0].paragraphs[0].sentences[0].text.full, 'first sentence wrong');
+    await s.locator('[data-speak="next"]').click();
+    assert((await p.locator('#speak .speak-line').textContent()) === story.readings[0].paragraphs[0].sentences[1].text.full, 'next did not advance');
+    await p.locator('#speak [data-speak="play"]').click();
+    assert((await p.locator('#speak-status').textContent()).trim().length > 0, 'no audio status shown');
+    await p.context().close();
+  });
+
+  await test('writing: word bank inserts, draft is private and survives a refresh', async () => {
+    const p = await page();
+    await openSample(p);
+    await p.locator('#writing .chips button').first().click();
+    await p.locator('#draft').pressSequentially('يُرِيدُ');
+    await p.waitForTimeout(600);
+    assert((await p.locator('#draft-status').textContent()).includes('حُفظ'), 'save status missing');
+    await p.reload(); await p.waitForSelector('#reader[open] .sentence');
+    assert((await p.locator('#draft').inputValue()).includes(story.production.wordBank[0]), 'draft not restored');
+    await p.context().close();
+  });
+
+  await test('audio player appears only with a recording, plays and pauses, stays at the bottom', async () => {
+    const p = await page(390);
+    const withAudio = structuredClone(story); withAudio.readings[0].audio = { src: 'test-reading.wav' };
+    const n = 12000, wav = Buffer.alloc(44 + n); wav.write('RIFF', 0); wav.writeUInt32LE(36 + n, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16); wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22); wav.writeUInt32LE(8000, 24); wav.writeUInt32LE(8000, 28); wav.writeUInt16LE(1, 32); wav.writeUInt16LE(8, 34); wav.write('data', 36); wav.writeUInt32LE(n, 40); wav.fill(128, 44);
+    await p.route('**/content/stories/where-is-the-phone.json', (r) => r.fulfill({ json: withAudio }));
+    await p.route('**/test-reading.wav', (r) => r.fulfill({ body: wav, contentType: 'audio/wav' }));
+    await openSample(p);
+    const play = p.locator('#pl-play');
+    assert(await play.getAttribute('aria-label') === 'تشغيل', 'must not autoplay');
+    await play.click();
+    await p.waitForFunction(() => document.querySelector('#pl-play')?.getAttribute('aria-label') === 'إيقاف مؤقت', null, { timeout: 5000 });
+    await p.locator('#pl-play').click();
+    assert(await p.locator('.player').evaluate((el) => getComputedStyle(el).position) === 'sticky', 'player should stay on screen');
+    await p.locator('[data-reading="1"]').click();
+    assert(await p.locator('.player').count() === 0, 'version B has no recording, so no player');
+    await p.context().close();
+  });
+
+  await test('story links, related stories and sharing with two published stories', async () => {
+    const second = { ...story, id: 'story-9001', slug: 'second-test', status: 'published', title: { ...story.title, ar: 'حِكَايَةٌ ثَانِيَةٌ' } };
+    const secondFile = join(root, 'dist/content/stories/second-test.json');
+    await writeFile(storyFile, JSON.stringify({ ...story, status: 'published' }, null, 2));
+    await writeFile(secondFile, JSON.stringify(second, null, 2));
+    try {
+      assert(validate().status === 0, 'validator failed');
+      const p = await page();
+      await p.goto(`${BASE}#story-second-test`);
+      await p.waitForSelector('#reader[open] .sentence');
+      assert((await p.locator('#reader-content h2').first().textContent()) === 'حِكَايَةٌ ثَانِيَةٌ', 'link opened the wrong story');
+      assert((await p.locator('.reader-top-sub').textContent()).includes('القصص'), 'breadcrumb missing');
+      await p.locator('.related-card').first().click();
+      await p.waitForFunction(() => location.hash === '#story-where-is-the-phone');
+      await p.locator('#copy-link').click();
+      assert((await p.locator('#copy-status').textContent()).trim().length > 0, 'copy link gave no feedback');
+      assert((await p.locator('.share a').getAttribute('href')).includes('whatsapp'), 'WhatsApp link missing');
+      await p.locator('.close').click();
+      await p.waitForFunction(() => location.hash === '', null, { timeout: 3000 }).catch(() => {});
+      assert(await p.evaluate(() => location.hash) === '', 'closing should clear the story link');
+      assert(!p.errors.length, p.errors.join(' | '));
+      await p.context().close();
+    } finally {
+      await rm(secondFile);
+      await writeFile(storyFile, JSON.stringify(story, null, 2) + '\n');
+      validate();
+    }
+  });
 } finally {
   await browser.close();
   server.kill();

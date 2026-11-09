@@ -13,7 +13,8 @@ const getJSON = path => fetch(path, {cache:'no-cache'}).then(r => { if (!r.ok) t
 let config = {levels:[], topics:[], answerRules:{default:{}}};
 let library = [];          // published index entries
 let story = null;          // the open story, with lookups added
-const ui = {reading:0, translation:'off', revealed:new Set(), answers:{}};
+const ui = {reading:0, translation:'off', revealed:new Set(), answers:{}, fc:null, speak:0, prompt:0};
+const freshCards = () => ({i:0, flipped:false, practice:false, onlyMissed:false, known:new Set(), missed:new Set()});
 
 /* ---------- Progress (this device only) ---------- */
 const READ_KEY = 'hikaya-read-v2';
@@ -120,8 +121,12 @@ async function openSlug(slug, {preview = false} = {}){
   catch { document.querySelector('#reader-content').innerHTML = `<h2>تعذّر فتح الحكاية.</h2><p lang="en" dir="ltr">The story could not be loaded. Check your connection and try again.</p>`; reader.showModal(); return; }
   if (raw.status !== 'published' && !preview) return;
   story = prepare(raw); story.preview = preview && raw.status !== 'published';
-  Object.assign(ui, {reading:0, translation:'off', answers:{}}); ui.revealed.clear();
-  renderReader(); reader.showModal(); reader.scrollTop = 0;
+  stopAudio();
+  Object.assign(ui, {reading:0, translation:'off', answers:{}, fc:freshCards(), speak:0, prompt:0}); ui.revealed.clear();
+  // Each published story has its own link: …#story-<slug>
+  if (!story.preview) { try { history.replaceState(null, '', `#story-${slug}`); } catch {} }
+  document.querySelector('.reader-top-sub').textContent = `/ القصص / ${levelOf(story.level).short}`;
+  renderReader(); if (!reader.open) reader.showModal(); reader.scrollTop = 0;
 }
 
 function renderReader(){
@@ -150,9 +155,16 @@ function renderReader(){
     }).join(' ')}</p>`).join('')}</div>
     <section class="glossary"><h3>كلمات من الحكاية</h3><div class="glossary-list">${s.vocabulary.map(v => `<details><summary>${esc(v.headword.full)}</summary><span lang="en" dir="ltr">${esc(v.gloss)}${v.note ? ` — ${esc(v.note)}` : ''}</span></details>`).join('')}</div></section>
     ${quizHTML()}
+    ${cardsHTML()}
+    ${speakHTML()}
+    ${writingHTML()}
     <button class="complete-btn" id="complete">${isRead(s) ? '✓ قرأت هذه الحكاية' : 'أنهيت القراءة ✓'}</button>
-    ${library.length > 1 && !s.preview ? `<button class="text-button next-btn" id="next">الحكاية التالية ←</button>` : ''}`;
+    ${library.length > 1 && !s.preview ? `<button class="text-button next-btn" id="next">الحكاية التالية ←</button>` : ''}
+    ${shareHTML()}
+    ${relatedHTML()}
+    ${r.audio?.src ? playerHTML() : ''}`;
   bindReader();
+  if (r.audio?.src) syncPlayer();
 }
 
 /* ---------- Questions ---------- */
@@ -247,11 +259,26 @@ function bindReader(){
     }
     else if (t.dataset.check) { const it = comp().items.find(x => x.id === t.dataset.check); check(it, t.closest('.q')); }
     else if (t.dataset.evidence) showSentence(t.dataset.evidence);
+    else if (t.dataset.fc) onCard(t.dataset.fc);
+    else if (t.dataset.speak) onSpeak(t.dataset.speak);
+    else if (t.dataset.prompt) { ui.prompt = Number(t.dataset.prompt); document.querySelector('#writing').outerHTML = writingHTML(); document.querySelector(`[data-prompt="${ui.prompt}"]`).focus(); }
+    else if (t.dataset.chip) insertChip(t.dataset.chip);
+    else if (t.dataset.open) openSlug(t.dataset.open);
+    else if (t.id === 'pl-play') listen();
+    else if (t.id === 'copy-link') {
+      const st = document.querySelector('#copy-status');
+      st.textContent = storyLink(story); // shown at once so it can be copied by hand if the clipboard is blocked
+      navigator.clipboard?.writeText(storyLink(story)).then(() => { st.textContent = `نُسخ الرابط: ${storyLink(story)}`; }, () => {});
+    }
     else if (t.id === 'listen') listen();
     else if (t.id === 'complete') { markRead(story); t.textContent = '✓ قرأت هذه الحكاية'; renderCards(document.querySelector('.filters .active')?.dataset.level || 'all'); }
     else if (t.id === 'next') { stopAudio(); const i = library.findIndex(x => x.slug === story.slug); openSlug(library[(i + 1) % library.length].slug); }
   };
-  root.oninput = e => { const q = e.target.closest('.q'); if (q && e.target.classList.contains('q-input')) ui.answers[q.dataset.item] = {...ui.answers[q.dataset.item], typed:e.target.value}; };
+  root.onchange = e => { if (e.target.id === 'pl-speed' && player) player.playbackRate = Number(e.target.value); };
+  root.oninput = e => {
+    if (e.target.id === 'draft') return saveDraft();
+    if (e.target.id === 'pl-seek') { ensurePlayer().currentTime = Number(e.target.value); return; }
+    const q = e.target.closest('.q'); if (q && e.target.classList.contains('q-input')) ui.answers[q.dataset.item] = {...ui.answers[q.dataset.item], typed:e.target.value}; };
   root.onkeydown = e => {
     if (e.key === 'Enter' && e.target.classList.contains('q-input')) e.target.closest('.q').querySelector('[data-check]').click();
     const tab = e.target.closest('[role=tab]');
@@ -265,33 +292,167 @@ function quizItemRefresh(it){
   return tmp.querySelector(`.q[data-item="${it.id}"]`).outerHTML;
 }
 
-/* ---------- Audio: a real recording when the story has one, else the device voice ---------- */
-let player = null;
-function stopAudio(){ if ('speechSynthesis' in window) speechSynthesis.cancel(); if (player) { player.pause(); player = null; } }
-function listen(){
-  const status = document.querySelector('#audio-status'), btn = document.querySelector('#listen');
-  const playing = player || ('speechSynthesis' in window && speechSynthesis.speaking);
-  if (playing) { stopAudio(); status.textContent = 'توقّف الصوت.'; btn.textContent = '▷ استمع'; return; }
-  const r = story.readings[ui.reading];
-  if (r.audio?.src) {
-    player = new Audio(r.audio.src);
-    player.onended = () => { player = null; btn.textContent = '▷ استمع'; };
-    player.onerror = () => { player = null; status.textContent = 'تعذّر تشغيل التسجيل.'; btn.textContent = '▷ استمع'; };
-    player.play().catch(() => {}); btn.textContent = '□ إيقاف'; status.textContent = 'تسجيل صوتي للحكاية.'; return;
+/* ---------- Flashcards: a review list, not a spaced-repetition schedule ---------- */
+function cardsHTML(){
+  const all = story.vocabulary; if (all.length < 2) return '';
+  const fc = ui.fc, deck = fc.onlyMissed ? all.filter(v => fc.missed.has(v.id)) : all;
+  const mode = (m, label) => `<button role="radio" aria-checked="${fc.practice === m}" data-fc="${m ? 'practice' : 'study'}">${label}</button>`;
+  let body;
+  if (fc.i >= deck.length) {
+    const missed = all.filter(v => fc.missed.has(v.id)).length;
+    body = `<div class="fc-card fc-done"><p>عرفت ${arNum(fc.known.size)} من ${arNum(all.length)} كلمات.</p>${missed ? `<button data-fc="review">راجع الكلمات التي فاتتك (${arNum(missed)})</button>` : ''}<button data-fc="restart">ابدأ من جديد</button></div>`;
+  } else {
+    const v = deck[fc.i], sid = v.anchors?.[0]?.sentence;
+    body = `<p class="fc-count">البطاقة ${arNum(fc.i + 1)} من ${arNum(deck.length)}</p>
+      <div class="fc-card"><p class="fc-word">${esc(v.headword.full)}</p>
+      ${fc.flipped ? `<p class="fc-gloss" lang="en" dir="ltr">${esc(v.gloss)}</p>${sid ? `<p class="ar-line">${sentenceHTML(sid, {markVocab:v.id})}</p>` : ''}` : ''}
+      <div class="fc-actions">${!fc.flipped ? `<button data-fc="flip" aria-expanded="false">اقلب البطاقة</button>`
+        : fc.practice ? `<button data-fc="know">عرفتها ✓</button><button data-fc="miss">لم أعرفها ✗</button>`
+        : `<button data-fc="flip" aria-expanded="true">أخفِ المعنى</button>`}</div></div>
+      ${fc.practice ? '' : `<div class="fc-nav"><button data-fc="prev" ${fc.i === 0 ? 'disabled' : ''}>→ السابقة</button><button data-fc="next" ${fc.i === deck.length - 1 ? 'disabled' : ''}>التالية ←</button></div>`}`;
   }
-  if (!('speechSynthesis' in window)) { status.textContent = 'الصوت غير متاح في هذا المتصفّح. يمكنك متابعة القراءة.'; return; }
+  return `<section class="cards" id="cards"><h3>بطاقات الكلمات</h3><p class="quiz-intro" lang="en" dir="ltr">Say the meaning out loud, then flip the card. In practice mode, mark each card, then review the ones you missed.</p>
+    <div role="radiogroup" aria-label="طريقة البطاقات" class="tr-modes fc-modes">${mode(false, 'تعلّم')}${mode(true, 'تدرّب')}</div><div class="fc-body">${body}</div></section>`;
+}
+function onCard(action){
+  const fc = ui.fc, deck = fc.onlyMissed ? story.vocabulary.filter(v => fc.missed.has(v.id)) : story.vocabulary, v = deck[fc.i];
+  if (action === 'flip') fc.flipped = !fc.flipped;
+  if (action === 'next') { fc.i++; fc.flipped = false; }
+  if (action === 'prev') { fc.i--; fc.flipped = false; }
+  if (action === 'know' || action === 'miss') { (action === 'know' ? fc.known : fc.missed).add(v.id); (action === 'know' ? fc.missed : fc.known).delete(v.id); fc.i++; fc.flipped = false; }
+  if (action === 'study' || action === 'practice') Object.assign(ui.fc, freshCards(), {practice: action === 'practice'});
+  if (action === 'restart') Object.assign(ui.fc, freshCards(), {practice: fc.practice});
+  if (action === 'review') Object.assign(fc, {i:0, flipped:false, onlyMissed:true});
+  const box = document.querySelector('#cards'); box.outerHTML = cardsHTML();
+  (document.querySelector('#cards .fc-actions button, #cards .fc-done button') || document.querySelector('#cards [data-fc]'))?.focus();
+}
+
+/* ---------- Speaking: one sentence at a time, listen then say it ---------- */
+const readingSentences = () => story.readings[ui.reading].paragraphs.flatMap(p => p.sentences);
+function speakHTML(){
+  const list = readingSentences(), i = Math.min(ui.speak, list.length - 1), sn = list[i];
+  return `<section class="speak" id="speak"><h3>اقرأ بصوت عالٍ</h3><p class="quiz-intro" lang="en" dir="ltr">Listen to a sentence if you like, then say it yourself. Go at your own pace, and read the whole story aloud when you feel ready.</p>
+    <p class="fc-count">الجملة ${arNum(i + 1)} من ${arNum(list.length)}</p><div class="fc-card speak-card"><p class="speak-line">${esc(sn.text.full)}</p>
+    <div class="fc-actions"><button data-speak="play">▷ استمع للجملة</button></div><p class="audio-status" id="speak-status" role="status"></p></div>
+    <div class="fc-nav"><button data-speak="prev" ${i === 0 ? 'disabled' : ''}>→ السابقة</button><button data-speak="next" ${i === list.length - 1 ? 'disabled' : ''}>التالية ←</button></div></section>`;
+}
+function onSpeak(action){
+  const list = readingSentences();
+  if (action === 'play') return playSentence(list[ui.speak]);
+  ui.speak = Math.max(0, Math.min(list.length - 1, ui.speak + (action === 'next' ? 1 : -1)));
+  document.querySelector('#speak').outerHTML = speakHTML();
+  (document.querySelector(`#speak [data-speak="${action}"]:not([disabled])`) || document.querySelector('#speak [data-speak="play"]')).focus();
+}
+function playSentence(sn){
+  const status = document.querySelector('#speak-status'), r = story.readings[ui.reading];
+  stopAudio();
+  if (sn.audio?.src) { player = new Audio(sn.audio.src); player.play().catch(() => {}); status.textContent = 'تسجيل صوتي.'; return; }
+  if (sn.timing?.verified && r.audio?.src) { const a = ensurePlayer(); a.currentTime = sn.timing.start; stopAt = sn.timing.end; a.play().catch(() => {}); status.textContent = 'تسجيل صوتي.'; return; }
+  speak(sn.text.full, status);
+}
+
+/* ---------- Writing: private, saved on this device ---------- */
+const draftKey = i => `hikaya-draft:${story.id}:${i}`;
+const loadDraft = i => { try { return localStorage.getItem(draftKey(i)) || ''; } catch { return ''; } };
+function writingHTML(){
+  const p = story.production; if (!p) return '';
+  const prompts = [{en:p.instructions, starter:null}, ...(p.extraPrompts || [])];
+  const cur = prompts[ui.prompt] || prompts[0];
+  const names = ['أعد سرد الحكاية', 'عنك أنت', 'نهاية جديدة'];
+  const chips = (list, label) => list?.length ? `<div class="chips" role="group" aria-label="${label}">${list.map(w => `<button data-chip="${esc(w)}">${esc(w)}</button>`).join('')}</div>` : '';
+  return `<section class="writing" id="writing"><h3>اكتب</h3>
+    ${prompts.length > 1 ? `<div role="radiogroup" aria-label="اختر المهمة" class="tr-modes">${prompts.map((x, i) => `<button role="radio" aria-checked="${i === ui.prompt}" data-prompt="${i}">${names[i] || `مهمة ${arNum(i + 1)}`}</button>`).join('')}</div>` : ''}
+    <p class="q-en" lang="en" dir="ltr">${esc(cur.en)}</p>
+    ${chips(p.wordBank, 'كلمات تساعدك')}${chips(cur.starter ? [cur.starter] : p.starters, 'بدايات جمل')}
+    <textarea id="draft" lang="ar" dir="rtl" rows="5" aria-label="نصّك" aria-describedby="draft-note">${esc(loadDraft(ui.prompt))}</textarea>
+    <p class="audio-status" id="draft-status" role="status"></p>
+    <p class="quiz-intro" id="draft-note" lang="en" dir="ltr">Private: your writing is saved only in this browser on this device. It is not sent to anyone and not checked automatically.</p></section>`;
+}
+let draftTimer;
+function saveDraft(){
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(() => {
+    const text = document.querySelector('#draft').value, status = document.querySelector('#draft-status');
+    try { text.trim() ? localStorage.setItem(draftKey(ui.prompt), text) : localStorage.removeItem(draftKey(ui.prompt)); status.textContent = text.trim() ? 'حُفظ على هذا الجهاز.' : ''; }
+    catch { status.textContent = 'تعذّر الحفظ: المتصفّح يمنع التخزين. انسخ نصّك قبل المغادرة.'; }
+  }, 400);
+}
+function insertChip(word){
+  const box = document.querySelector('#draft'), w = word.replace(/…/g, '').trim();
+  const before = box.value.slice(0, box.selectionStart), after = box.value.slice(box.selectionEnd);
+  const sep = before && !/\s$/.test(before) ? ' ' : '';
+  box.value = `${before}${sep}${w} ${after}`; const pos = (before + sep + w + ' ').length;
+  box.setSelectionRange(pos, pos); box.focus(); saveDraft();
+}
+
+/* ---------- Share and related stories ---------- */
+const storyLink = s => `${location.origin}${location.pathname}#story-${s.slug}`;
+function shareHTML(){
+  if (story.preview) return '';
+  const link = storyLink(story);
+  return `<div class="share"><span>شارك الحكاية:</span><button class="text-button" id="copy-link">انسخ الرابط</button><a class="text-button" href="https://api.whatsapp.com/send?text=${encodeURIComponent(`${story.title.ar} ${link}`)}" target="_blank" rel="noopener">واتساب</a><span class="audio-status" id="copy-status" role="status"></span></div>`;
+}
+function relatedHTML(){
+  if (story.preview) return '';
+  const others = library.filter(s => s.slug !== story.slug);
+  const picks = [...others.filter(s => s.level === story.level), ...others.filter(s => s.level !== story.level)].slice(0, 3);
+  if (!picks.length) return '';
+  return `<section class="related"><h3>حكايات أخرى</h3><div class="related-list">${picks.map(s => `<button class="related-card" data-open="${esc(s.slug)}"><span class="cover-label">${esc(levelOf(s.level).short)}</span><b>${esc(s.title.ar)}</b><span>${esc(s.description.ar || s.description.en)}</span></button>`).join('')}</div></section>`;
+}
+
+/* ---------- Audio: the story's recording when it has one, else the device voice ---------- */
+let player = null, stopAt = null;
+const fmt = t => Number.isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00';
+function playerHTML(){
+  return `<div class="player" role="group" aria-label="تسجيل الحكاية"><button id="pl-play" aria-label="تشغيل">▷</button><input id="pl-seek" type="range" min="0" max="0" step="0.1" value="0" aria-label="موضع التشغيل"><span id="pl-time" dir="ltr">0:00 / 0:00</span><select id="pl-speed" aria-label="السرعة">${[0.75, 1, 1.25].map(x => `<option value="${x}" ${x === 1 ? 'selected' : ''}>${x}×</option>`).join('')}</select></div>`;
+}
+function ensurePlayer(){
+  const src = story.readings[ui.reading].audio.src;
+  if (player?.dataset?.src !== src) {
+    stopAudio(); player = new Audio(src); player.dataset.src = src; player.preload = 'metadata';
+    player.addEventListener('timeupdate', () => { if (stopAt != null && player.currentTime >= stopAt) { player.pause(); stopAt = null; } syncPlayer(); });
+    ['play', 'pause', 'loadedmetadata', 'ended'].forEach(ev => player.addEventListener(ev, syncPlayer));
+    player.addEventListener('error', () => { const s = document.querySelector('#audio-status'); if (s) s.textContent = 'تعذّر تشغيل التسجيل.'; });
+  }
+  return player;
+}
+function syncPlayer(){
+  const b = document.querySelector('#pl-play'); if (!b) return;
+  const a = player?.dataset?.src === story.readings[ui.reading].audio?.src ? player : null;
+  const on = a && !a.paused;
+  b.textContent = on ? '❚❚' : '▷'; b.setAttribute('aria-label', on ? 'إيقاف مؤقت' : 'تشغيل');
+  const seek = document.querySelector('#pl-seek'); seek.max = a?.duration || 0; seek.value = a?.currentTime || 0;
+  document.querySelector('#pl-time').textContent = `${fmt(a?.currentTime || 0)} / ${fmt(a?.duration)}`;
+  const l = document.querySelector('#listen'); if (l) l.textContent = on ? '□ إيقاف' : '▷ استمع';
+}
+function stopAudio(){ if ('speechSynthesis' in window) speechSynthesis.cancel(); if (player) player.pause(); stopAt = null; }
+function speak(text, status){
+  if (!('speechSynthesis' in window)) { status.textContent = 'الصوت غير متاح في هذا المتصفّح. يمكنك متابعة القراءة.'; return false; }
   const voice = speechSynthesis.getVoices().find(v => v.lang.toLowerCase().startsWith('ar'));
-  if (!voice) { status.textContent = 'لا يتوفّر صوت عربي على هذا الجهاز. يمكنك متابعة القراءة أو تفعيل صوت عربي من إعدادات الجهاز.'; return; }
-  const u = new SpeechSynthesisUtterance(r.paragraphs.flatMap(p => p.sentences.map(s => s.text.full)).join(' '));
-  u.voice = voice; u.lang = voice.lang; u.rate = .78;
-  status.textContent = 'قراءة آلية بصوت الجهاز، وليست تسجيلًا معتمدًا.'; btn.textContent = '□ إيقاف';
+  if (!voice) { status.textContent = 'لا يتوفّر صوت عربي على هذا الجهاز. يمكنك متابعة القراءة أو تفعيل صوت عربي من إعدادات الجهاز.'; return false; }
+  const u = new SpeechSynthesisUtterance(text); u.voice = voice; u.lang = voice.lang; u.rate = .78;
+  status.textContent = 'قراءة آلية بصوت الجهاز، وليست تسجيلًا معتمدًا.';
   u.onend = () => { const b = document.querySelector('#listen'); if (b) b.textContent = '▷ استمع'; };
-  u.onerror = () => { status.textContent = 'تعذّر تشغيل الصوت. حاول مرة أخرى.'; btn.textContent = '▷ استمع'; };
-  speechSynthesis.speak(u);
+  u.onerror = () => { status.textContent = 'تعذّر تشغيل الصوت. حاول مرة أخرى.'; };
+  speechSynthesis.speak(u); return true;
+}
+function listen(){
+  const status = document.querySelector('#audio-status'), btn = document.querySelector('#listen'), r = story.readings[ui.reading];
+  if (r.audio?.src) { const a = ensurePlayer(); stopAt = null; a.paused ? a.play().catch(() => {}) : a.pause(); status.textContent = 'تسجيل صوتي للحكاية.'; return; }
+  if ('speechSynthesis' in window && speechSynthesis.speaking) { stopAudio(); status.textContent = 'توقّف الصوت.'; btn.textContent = '▷ استمع'; return; }
+  if (speak(r.paragraphs.flatMap(p => p.sentences.map(s => s.text.full)).join(' '), status)) btn.textContent = '□ إيقاف';
 }
 
 document.querySelector('.close').onclick = () => reader.close();
-reader.addEventListener('close', () => { stopAudio(); closePop(false); });
+reader.addEventListener('close', () => {
+  stopAudio(); closePop(false);
+  if (/^#story-/.test(location.hash)) { try { history.replaceState(null, '', location.pathname + location.search); } catch {} }
+});
+function openFromHash(){
+  const slug = location.hash.match(/^#story-([a-z0-9-]+)$/)?.[1];
+  if (slug && library.some(s => s.slug === slug) && !(reader.open && story?.slug === slug)) openSlug(slug);
+}
+window.addEventListener('hashchange', openFromHash);
 reader.addEventListener('click', e => { if (e.target === reader) { const r = reader.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) reader.close(); } });
 
 /* ---------- Start ---------- */
@@ -305,4 +466,5 @@ reader.addEventListener('click', e => { if (e.target === reader) { const r = rea
   renderFilters(); renderCards(); renderWords();
   const preview = new URLSearchParams(location.search).get('preview') || location.hash.match(/^#preview-([a-z0-9-]+)$/)?.[1];
   if (preview && /^[a-z0-9-]+$/.test(preview)) openSlug(preview, {preview:true});
+  else openFromHash();
 })();

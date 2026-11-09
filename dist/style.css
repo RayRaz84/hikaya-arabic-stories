@@ -54,3 +54,35 @@
 .next-btn{display:inline-flex;margin-right:15px}
 @media (max-width:640px){.vocab-pop{inset:auto 12px 12px 12px;width:auto;transform:none}.seq li{font-size:18px}}
 @media (prefers-reduced-motion:reduce){.sentence{transition:none}}
+
+/* ---- Flashcards, speaking, writing, share, related, audio player ---- */
+.cards,.speak,.writing,.related{border-top:1px solid var(--line);margin-top:28px;padding-top:6px}
+.cards h3,.speak h3,.writing h3,.related h3{font-size:23px;font-weight:500}
+.fc-modes{margin-bottom:12px}
+.fc-count{font-size:14px;color:var(--muted);margin:0 0 6px}
+.fc-card{border:1px solid #cbd2be;border-radius:8px;background:#f7f8f2;padding:22px 18px;text-align:center;display:grid;gap:8px;justify-items:center}
+.fc-word{font-size:40px;font-weight:600;margin:0;line-height:1.8}
+.fc-gloss{font-size:18px;font-weight:600;margin:0}
+.fc-actions,.fc-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fc-nav{justify-content:space-between;margin-top:10px}
+.fc-card button,.fc-nav button,.fc-modes button,.chips button,.related-card,.player button,.player select{border:1px solid #cbd2be;background:#e8ecdf;border-radius:5px;padding:6px 13px;color:var(--ink);font-size:15px}
+.fc-card button[data-fc=know]{background:#e8f0e2}
+.fc-card button[data-fc=miss]{background:#f6e6dc}
+.fc-nav button:disabled{opacity:.45;cursor:default}
+.fc-done p{font-size:20px;margin:0}
+.speak-line{font-size:28px;line-height:2;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chips button{background:transparent;border-radius:99px;font-size:18px;padding:2px 14px}
+#draft{width:100%;border:1px solid #cbd2be;border-radius:6px;padding:10px 14px;font-size:21px;line-height:2;resize:vertical;font-family:'Noto Naskh Arabic',serif;color:var(--ink)}
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:22px;font-size:16px;color:var(--muted)}
+.share .text-button{color:var(--green);text-decoration:underline;text-underline-offset:4px}
+.related-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{display:grid;gap:4px;text-align:right;background:#fbfbf7!important;padding:12px 14px!important}
+.related-card b{font-size:21px;font-weight:600}
+.related-card span:last-child{font-size:15px;color:var(--muted)}
+.related-card .cover-label{position:static;justify-self:start}
+.player{position:sticky;bottom:0;margin:24px -50px -45px;padding:10px 24px;background:var(--bg);border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;z-index:3}
+.player input[type=range]{flex:1;accent-color:var(--green);min-width:80px}
+#pl-time{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:640px){.player{margin:20px -24px -24px;padding:8px 14px}.fc-word{font-size:34px}.speak-line{font-size:24px}}
+.tr-modes [role=radio][aria-checked=true]{background:var(--green);border-color:var(--green);color:#fff}

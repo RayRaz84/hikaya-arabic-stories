@@ -21,7 +21,8 @@ Each story is one JSON file in `dist/content/stories/<slug>.json`. The site read
 | `vocabulary` | Entries with `id`, `headword.full`, `gloss`, optional `note`, `image`, `audio`, `transliteration`, `frequencyRank`, and `anchors` |
 | anchor | `{sentence, tokens: [start, end)}`. Tokens are the sentence's space-separated words, counted from 0, so `[1, 3]` is the 2nd and 3rd word. Phrases are fine |
 | `activities.comprehension` | `instructions` (English) and `items` (below) |
-| `production`, `teacherNotes`, `activities.practice` | Stored for later; this site does not show them yet |
+| `production` | Writing section: `instructions` (English), `wordBank`, `starters`, `extraPrompts` `[{id, en, starter}]` (personal response, new ending). `pictures` are stored for later |
+| `teacherNotes`, `activities.practice` | Stored for later; this site does not show them yet. Flashcards are built from `vocabulary` |
 
 Question items (`items`), each with `id`, `explanation` (English) and `evidence` (sentence ids):
 
@@ -36,7 +37,7 @@ Question items (`items`), each with `id`, `explanation` (English) and `evidence`
 2. An editor scores it against NQS (85+, all five integrity tests, 4/5 on motivation, cause and effect and ending).
 3. Copy an existing story file, fill it in, keep `status: "draft"`.
 4. Run `node scripts/validate.mjs`. Fix every error (missing fields, duplicate ids, broken references, missing answers, missing files). It also rebuilds `dist/content/index.json`, the list the library reads.
-5. Preview privately at `/?preview=<slug>`.
+5. Preview privately at `/?preview=<slug>` (or `/#preview-<slug>`). Published stories have their own link: `/#story-<slug>`.
 6. After approval set `status` to `published` and `contentState` to `approved`, run the validator again, and deploy `dist/`.
 
 Draft files are still downloadable by anyone who guesses their address, because this is a static site. Keep unreviewed drafts out of the deployed folder if that matters.

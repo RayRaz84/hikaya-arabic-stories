@@ -1,6 +1,6 @@
 # حكاية — Arabic through stories
 
-A static Arabic reading website: a library of short illustrated stories with versions A/B/C, sentence-by-sentence English translation on request, tap-a-word meanings, comprehension questions with feedback, and reading progress saved on the reader's device.
+A static Arabic reading website: a library of short illustrated stories with versions A/B/C, sentence-by-sentence English translation on request, tap-a-word meanings, comprehension questions with feedback, word flashcards, a read-aloud step, a private writing prompt, an audio player for recordings, related stories and a link for every story (`#story-<slug>`). Progress and drafts are saved on the reader's device only.
 
 The library is empty until approved stories are published. A sample story for testing the reader opens at `/?preview=where-is-the-phone`.
 
