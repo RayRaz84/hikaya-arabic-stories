@@ -61,6 +61,8 @@ try {
     const text = await p.locator('#reader-content').textContent();
     assert(text.includes('معاينة') && text.includes('محتوى تجريبي'), 'notices missing');
     await p.screenshot({ path: join(shots, 'reader-1280.png') });
+    await p.goto(`${BASE}#preview-where-is-the-phone`); await p.reload();
+    await p.waitForSelector('#reader[open] .sentence');
     await p.context().close();
   });
 

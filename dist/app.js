@@ -303,6 +303,6 @@ reader.addEventListener('click', e => { if (e.target === reader) { const r = rea
     return;
   }
   renderFilters(); renderCards(); renderWords();
-  const preview = new URLSearchParams(location.search).get('preview');
+  const preview = new URLSearchParams(location.search).get('preview') || location.hash.match(/^#preview-([a-z0-9-]+)$/)?.[1];
   if (preview && /^[a-z0-9-]+$/.test(preview)) openSlug(preview, {preview:true});
 })();
