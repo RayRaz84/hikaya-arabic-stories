@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "levels": [
+    {
+      "id": "level-0",
+      "label": "البداية · تمهيدي",
+      "short": "تمهيدي",
+      "order": 0,
+      "translations": true
+    },
+    {
+      "id": "level-1",
+      "label": "مبتدئ · A1",
+      "short": "A1",
+      "order": 1,
+      "translations": true
+    },
+    {
+      "id": "level-2",
+      "label": "خطوة أبعد · A2",
+      "short": "A2",
+      "order": 2,
+      "translations": true
+    }
+  ],
+  "levelsNote": "Labels carried over from the site's original design. Level names are still to be decided; change them here only.",
+  "topics": [
+    {
+      "id": "home",
+      "label": "في البيت"
+    },
+    {
+      "id": "school",
+      "label": "في المدرسة"
+    },
+    {
+      "id": "food",
+      "label": "الطعام"
+    },
+    {
+      "id": "animals",
+      "label": "الحيوانات"
+    },
+    {
+      "id": "town",
+      "label": "في الحيّ"
+    }
+  ],
+  "collections": [
+    {
+      "id": "khalid",
+      "label": "حكايات خالد"
+    }
+  ],
+  "courses": [],
+  "diacriticModes": [
+    {
+      "id": "full",
+      "label": "Full vowels",
+      "description": "Fully vocalized text"
+    }
+  ],
+  "diacriticModesNote": "Decided: all Arabic text is fully vowelled.",
+  "answerRules": {
+    "default": {
+      "trimPunctuation": true,
+      "collapseSpaces": true,
+      "stripDiacritics": true,
+      "stripTatweel": false,
+      "unifyAlef": false,
+      "unifyTaMarbuta": false,
+      "unifyYa": false
+    }
+  }
+}

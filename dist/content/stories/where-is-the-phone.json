@@ -1,0 +1,973 @@
+{
+  "schemaVersion": 1,
+  "id": "story-0001",
+  "slug": "where-is-the-phone",
+  "contentVersion": 1,
+  "status": "draft",
+  "contentState": "sample",
+  "featured": false,
+  "title": {
+    "ar": "أَيْنَ الْهَاتِفُ؟",
+    "en": "Where is the phone?"
+  },
+  "description": {
+    "en": "Khalid needs his phone, but it isn't where it should be. Where could it be?",
+    "ar": "يُرِيدُ خَالِدٌ هَاتِفَهُ، لٰكِنَّهُ لَيْسَ عَلَى الطَّاوِلَةِ. أَيْنَ هُوَ؟"
+  },
+  "level": "level-1",
+  "topics": [
+    "home",
+    "animals"
+  ],
+  "collections": [
+    "khalid"
+  ],
+  "course": null,
+  "unit": null,
+  "readingMinutes": 2,
+  "cover": {
+    "src": null,
+    "alt": "Illustration pending: Khalid looking around his home for something."
+  },
+  "textVariants": [
+    "full"
+  ],
+  "defaultVariant": "full",
+  "readings": [
+    {
+      "id": "A",
+      "label": "القصة أ",
+      "audio": null,
+      "paragraphs": [
+        {
+          "id": "a-p1",
+          "sentences": [
+            {
+              "id": "a-s1",
+              "text": {
+                "full": "خَالِدٌ يُرِيدُ الْهَاتِفَ."
+              },
+              "translation": "Khalid wants the phone.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s2",
+              "text": {
+                "full": "لَكِنَّ الْهَاتِفَ لَيْسَ عَلَى الطَّاوِلَةِ."
+              },
+              "translation": "But the phone is not on the table.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p2",
+          "sentences": [
+            {
+              "id": "a-s3",
+              "text": {
+                "full": "خَالِدٌ يَبْحَثُ فِي الْحَقِيبَةِ."
+              },
+              "translation": "Khalid looks in the bag.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s4",
+              "text": {
+                "full": "الْهَاتِفُ لَيْسَ فِي الْحَقِيبَةِ."
+              },
+              "translation": "The phone is not in the bag.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s5",
+              "text": {
+                "full": "ثُمَّ خَالِدٌ يَبْحَثُ فِي الْمَطْبَخِ."
+              },
+              "translation": "Then Khalid looks in the kitchen.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s6",
+              "text": {
+                "full": "الْهَاتِفُ لَيْسَ فِي الْمَطْبَخِ."
+              },
+              "translation": "The phone is not in the kitchen.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p3",
+          "sentences": [
+            {
+              "id": "a-s7",
+              "text": {
+                "full": "خَالِدٌ حَزِينٌ جِدًّا."
+              },
+              "translation": "Khalid is very sad.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s8",
+              "text": {
+                "full": "الْآنَ الْقِطَّةُ عِنْدَهَا الْهَاتِفُ!"
+              },
+              "translation": "Now the cat has the phone!",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "القصة ب",
+      "audio": null,
+      "paragraphs": [
+        {
+          "id": "b-p1",
+          "sentences": [
+            {
+              "id": "b-s1",
+              "text": {
+                "full": "خَالِدٌ يُرِيدُ الْهَاتِفَ."
+              },
+              "translation": "Khalid wants the phone.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s2",
+              "text": {
+                "full": "أُمُّ خَالِدٍ تَتَّصِلُ."
+              },
+              "translation": "Khalid's mother is calling.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s3",
+              "text": {
+                "full": "لَكِنَّ الْهَاتِفَ لَيْسَ عَلَى الطَّاوِلَةِ."
+              },
+              "translation": "But the phone is not on the table.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p2",
+          "sentences": [
+            {
+              "id": "b-s4",
+              "text": {
+                "full": "خَالِدٌ يَبْحَثُ فِي الْحَقِيبَةِ."
+              },
+              "translation": "Khalid looks in the bag.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s5",
+              "text": {
+                "full": "الْهَاتِفُ لَيْسَ فِي الْحَقِيبَةِ."
+              },
+              "translation": "The phone is not in the bag.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s6",
+              "text": {
+                "full": "ثُمَّ خَالِدٌ يَبْحَثُ فِي الْمَطْبَخِ."
+              },
+              "translation": "Then Khalid looks in the kitchen.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s7",
+              "text": {
+                "full": "الْهَاتِفُ لَيْسَ فِي الْمَطْبَخِ."
+              },
+              "translation": "The phone is not in the kitchen.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p3",
+          "sentences": [
+            {
+              "id": "b-s8",
+              "text": {
+                "full": "خَالِدٌ يَبْحَثُ فِي الْغُرْفَةِ."
+              },
+              "translation": "Khalid looks in the room.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s9",
+              "text": {
+                "full": "الْهَاتِفُ لَيْسَ فِي الْغُرْفَةِ."
+              },
+              "translation": "The phone is not in the room.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p4",
+          "sentences": [
+            {
+              "id": "b-s10",
+              "text": {
+                "full": "خَالِدٌ حَزِينٌ جِدًّا."
+              },
+              "translation": "Khalid is very sad.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s11",
+              "text": {
+                "full": "الْآنَ الْقِطَّةُ عِنْدَهَا الْهَاتِفُ!"
+              },
+              "translation": "Now the cat has the phone!",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s12",
+              "text": {
+                "full": "الْقِطَّةُ سَعِيدَةٌ جِدًّا."
+              },
+              "translation": "The cat is very happy.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "v-phone",
+      "headword": {
+        "full": "الْهَاتِف"
+      },
+      "gloss": "the phone",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s1",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s2",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s4",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "a-s6",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "a-s8",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s1",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s3",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s5",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s7",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s9",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s11",
+          "tokens": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-looks-in",
+      "headword": {
+        "full": "يَبْحَثُ فِي"
+      },
+      "gloss": "looks in",
+      "note": "A two-word phrase: the verb and the place word go together.",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s3",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s5",
+          "tokens": [
+            2,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s4",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s6",
+          "tokens": [
+            2,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s8",
+          "tokens": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-is-not",
+      "headword": {
+        "full": "لَيْسَ"
+      },
+      "gloss": "is not",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s2",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s4",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s6",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s3",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s5",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s7",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s9",
+          "tokens": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-bag",
+      "headword": {
+        "full": "الْحَقِيبَة"
+      },
+      "gloss": "the bag",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s3",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "a-s4",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s4",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s5",
+          "tokens": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-kitchen",
+      "headword": {
+        "full": "الْمَطْبَخ"
+      },
+      "gloss": "the kitchen",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s5",
+          "tokens": [
+            4,
+            5
+          ]
+        },
+        {
+          "sentence": "a-s6",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s6",
+          "tokens": [
+            4,
+            5
+          ]
+        },
+        {
+          "sentence": "b-s7",
+          "tokens": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-she-has",
+      "headword": {
+        "full": "عِنْدَهَا"
+      },
+      "gloss": "she has",
+      "note": "Compare عنده (he has).",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s8",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s11",
+          "tokens": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-cat",
+      "headword": {
+        "full": "الْقِطَّة"
+      },
+      "gloss": "the cat",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s8",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s11",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s12",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "activities": {
+    "comprehension": {
+      "id": "comprehension",
+      "version": 1,
+      "instructions": "Answer the questions about the story. Each answer links back to the sentence that shows it.",
+      "items": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "prompt": "مَاذَا يُرِيدُ خَالِدٌ؟",
+          "options": [
+            {
+              "id": "o1",
+              "text": "الْهَاتِفَ"
+            },
+            {
+              "id": "o2",
+              "text": "الْحَقِيبَةَ"
+            },
+            {
+              "id": "o3",
+              "text": "الْقِطَّةَ"
+            }
+          ],
+          "answer": "o1",
+          "explanation": "Khalid wants the phone (الهاتف). The whole story is his search for it.",
+          "evidence": [
+            "a-s1",
+            "b-s1"
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "truefalse",
+          "statement": "الْهَاتِفُ فِي الْحَقِيبَةِ.",
+          "answer": false,
+          "correction": "الْهَاتِفُ لَيْسَ فِي الْحَقِيبَةِ.",
+          "explanation": "Khalid looks in the bag, but the phone is not there.",
+          "evidence": [
+            "a-s4",
+            "b-s5"
+          ]
+        },
+        {
+          "id": "q3",
+          "type": "sequence",
+          "prompt": "Put the events in order.",
+          "steps": [
+            {
+              "id": "e1",
+              "text": "خَالِدٌ يَبْحَثُ فِي الْحَقِيبَةِ."
+            },
+            {
+              "id": "e2",
+              "text": "خَالِدٌ يَبْحَثُ فِي الْمَطْبَخِ."
+            },
+            {
+              "id": "e3",
+              "text": "الْقِطَّةُ عِنْدَهَا الْهَاتِفُ."
+            }
+          ],
+          "explanation": "First the bag, then the kitchen. At the end we find out the cat has the phone.",
+          "evidence": [
+            "a-s3",
+            "a-s5",
+            "a-s8"
+          ]
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "prompt": "لِمَاذَا خَالِدٌ حَزِينٌ؟",
+          "options": [
+            {
+              "id": "o1",
+              "text": "لِأَنَّ خَالِدًا لَيْسَ عِنْدَهُ الْهَاتِفُ."
+            },
+            {
+              "id": "o2",
+              "text": "لِأَنَّ الْقِطَّةَ حَزِينَةٌ."
+            },
+            {
+              "id": "o3",
+              "text": "لِأَنَّ الْحَقِيبَةَ عَلَى الطَّاوِلَةِ."
+            }
+          ],
+          "answer": "o1",
+          "explanation": "He has looked in the bag and the kitchen, and he still does not have the phone.",
+          "evidence": [
+            "a-s7",
+            "a-s6"
+          ]
+        },
+        {
+          "id": "q5",
+          "type": "shortanswer",
+          "prompt": "أَيْنَ يَبْحَثُ خَالِدٌ أَوَّلًا؟",
+          "hint": "Type one or two words in Arabic. Vowel marks are optional.",
+          "accepted": [
+            "الحقيبة",
+            "في الحقيبة"
+          ],
+          "rules": "default",
+          "explanation": "He looks in the bag first (في الحقيبة).",
+          "evidence": [
+            "a-s3",
+            "b-s4"
+          ]
+        }
+      ]
+    },
+    "practice": [
+      {
+        "id": "match-meaning",
+        "type": "match",
+        "version": 1,
+        "instructions": "Match each Arabic word or phrase to its meaning.",
+        "pairs": [
+          {
+            "vocab": "v-phone"
+          },
+          {
+            "vocab": "v-looks-in"
+          },
+          {
+            "vocab": "v-is-not"
+          },
+          {
+            "vocab": "v-kitchen"
+          },
+          {
+            "vocab": "v-she-has"
+          }
+        ]
+      },
+      {
+        "id": "listen-choose",
+        "type": "listen",
+        "version": 1,
+        "instructions": "Press Play, listen, and choose what you hear. Play it as many times as you like.",
+        "items": [
+          {
+            "id": "l1",
+            "play": {
+              "sentence": "a-s3"
+            },
+            "options": [
+              {
+                "id": "o1",
+                "sentence": "a-s3"
+              },
+              {
+                "id": "o2",
+                "sentence": "a-s5"
+              },
+              {
+                "id": "o3",
+                "sentence": "a-s4"
+              }
+            ],
+            "answer": "o1",
+            "explanation": "Khalid is looking in the bag (الحقيبة)."
+          },
+          {
+            "id": "l2",
+            "play": {
+              "sentence": "a-s8"
+            },
+            "options": [
+              {
+                "id": "o1",
+                "sentence": "a-s8"
+              },
+              {
+                "id": "o2",
+                "sentence": "a-s7"
+              },
+              {
+                "id": "o3",
+                "sentence": "a-s1"
+              }
+            ],
+            "answer": "o1"
+          },
+          {
+            "id": "l3",
+            "play": {
+              "vocab": "v-kitchen"
+            },
+            "options": [
+              {
+                "id": "o1",
+                "vocab": "v-kitchen"
+              },
+              {
+                "id": "o2",
+                "vocab": "v-bag"
+              },
+              {
+                "id": "o3",
+                "vocab": "v-phone"
+              }
+            ],
+            "answer": "o1"
+          }
+        ]
+      },
+      {
+        "id": "flashcards",
+        "type": "flashcards",
+        "version": 1,
+        "instructions": "Look at the Arabic, say what it means, then check. Mark any card you want to see again.",
+        "cards": [
+          {
+            "vocab": "v-phone"
+          },
+          {
+            "vocab": "v-looks-in"
+          },
+          {
+            "vocab": "v-is-not"
+          },
+          {
+            "vocab": "v-bag"
+          },
+          {
+            "vocab": "v-kitchen"
+          },
+          {
+            "vocab": "v-she-has"
+          },
+          {
+            "vocab": "v-cat"
+          }
+        ]
+      },
+      {
+        "id": "gap-fill",
+        "type": "gapfill",
+        "version": 1,
+        "instructions": "Choose the missing word for each sentence from the story.",
+        "items": [
+          {
+            "id": "g1",
+            "sentence": "a-s1",
+            "gap": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "g2",
+            "sentence": "a-s3",
+            "gap": [
+              3,
+              4
+            ]
+          },
+          {
+            "id": "g3",
+            "sentence": "a-s4",
+            "gap": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": "g4",
+            "sentence": "a-s6",
+            "gap": [
+              3,
+              4
+            ]
+          }
+        ],
+        "distractors": [
+          "v-cat"
+        ]
+      }
+    ]
+  },
+  "production": {
+    "id": "retell",
+    "type": "retell",
+    "version": 1,
+    "instructions": "Retell the story in Arabic. Use the pictures, the word bank and the sentence starters. Short sentences are fine.",
+    "pictures": [
+      {
+        "src": null,
+        "alt": "Khalid looks for the phone on the table."
+      },
+      {
+        "src": null,
+        "alt": "Khalid looks in the bag."
+      },
+      {
+        "src": null,
+        "alt": "Khalid looks in the kitchen."
+      },
+      {
+        "src": null,
+        "alt": "The cat has the phone."
+      }
+    ],
+    "wordBank": [
+      "خَالِد",
+      "يُرِيد",
+      "الْهَاتِف",
+      "يَبْحَث فِي",
+      "الْحَقِيبَة",
+      "الْمَطْبَخ",
+      "لَيْسَ",
+      "الْقِطَّة",
+      "عِنْدَهَا"
+    ],
+    "starters": [
+      "خَالِدٌ يُرِيدُ …",
+      "خَالِدٌ يَبْحَثُ فِي …",
+      "الْهَاتِفُ لَيْسَ …",
+      "الْآنَ الْقِطَّةُ …"
+    ],
+    "extraPrompts": [
+      {
+        "id": "personal",
+        "en": "Where do you look when you can't find your phone? Write one or two sentences.",
+        "starter": "أَنَا أَبْحَثُ فِي …"
+      },
+      {
+        "id": "ending",
+        "en": "Write a different ending. Who has the phone now?",
+        "starter": "الْآنَ … عِنْدَهُ الْهَاتِفُ!"
+      }
+    ]
+  },
+  "teacherNotes": {
+    "sequence": [
+      "Oral input first: act out looking for a phone, with no text.",
+      "Circle the first four sentences before learners see the text.",
+      "PQA: ask 3–5 learners where they look for their phone.",
+      "Read Reading A aloud, then Reading B."
+    ],
+    "circling": [
+      {
+        "sentence": "a-s1",
+        "questions": [
+          "هَلْ خَالِدٌ يُرِيدُ الْهَاتِفَ؟",
+          "خَالِدٌ يُرِيدُ الْهَاتِفَ أَمِ الْحَقِيبَةَ؟",
+          "مَاذَا يُرِيدُ خَالِدٌ؟",
+          "هَلْ أَنْتَ تُرِيدُ الْهَاتِفَ؟"
+        ]
+      }
+    ]
+  },
+  "related": []
+}

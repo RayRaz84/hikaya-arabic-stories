@@ -1,18 +1,308 @@
-const stories=[
-{title:'أين القهوة؟',level:0,theme:'في البيت',desc:'تريد مريم قهوة. تبحث هنا وهناك. أين هي؟',color:'#e7dfcb',art:'coffee',focus:'يريد · في · هنا',paras:['هٰذِهِ مَرْيَمُ. مَرْيَمُ فِي الْبَيْتِ. هِيَ تُرِيدُ قَهْوَةً.','تَذْهَبُ مَرْيَمُ إِلَى الْمَطْبَخِ. هُنَا مَاءٌ، وَهُنَا شَايٌ. لٰكِنْ أَيْنَ الْقَهْوَةُ؟','تَقُولُ مَرْيَمُ: «أَيْنَ قَهْوَتِي؟» يَقُولُ سَامِي: «هِيَ هُنَا!»','سَامِي عِنْدَ الْبَابِ. فِي يَدِهِ قَهْوَةٌ. يَقُولُ: «هٰذِهِ لَكِ.»','تَقُولُ مَرْيَمُ: «شُكْرًا!» الْآنَ عِنْدَ مَرْيَمَ قَهْوَةٌ. هِيَ سَعِيدَةٌ.'],en:['This is Maryam. Maryam is at home. She wants coffee.','Maryam goes to the kitchen. Here is water, and here is tea. But where is the coffee?','Maryam says, “Where is my coffee?” Sami says, “It is here!”','Sami is by the door. In his hand is coffee. He says, “This is for you.”','Maryam says, “Thank you!” Now Maryam has coffee. She is happy.'],gloss:[['تريد','wants (she)'],['في','in / at'],['أين','where'],['هنا','here'],['عند','at / by; عند مريم = Maryam has'],['سعيدة','happy (feminine)']],q:'ماذا تريد مريم؟',options:['قهوة','شايًا','ماءً'],answer:0,explain:'نعم! مريم تريد قهوة. القهوة في يد سامي.'},
-{title:'قطّ عند الباب',level:0,theme:'صديق صغير',desc:'يسمع آدم صوتًا. يفتح الباب، ويرى صديقًا صغيرًا.',color:'#e2e7dc',art:'cat',focus:'يسمع · يرى · صغير',paras:['آدَمُ فِي الْبَيْتِ. يَسْمَعُ صَوْتًا. مَا هٰذَا؟','يَذْهَبُ آدَمُ إِلَى الْبَابِ. يَفْتَحُ الْبَابَ. يَرَى قِطًّا صَغِيرًا.','الْقِطُّ عِنْدَ الْبَابِ. هُوَ يُرِيدُ مَاءً. يَذْهَبُ آدَمُ إِلَى الْمَطْبَخِ.','الْآنَ عِنْدَ الْقِطِّ مَاءٌ. يَشْرَبُ الْقِطُّ الْمَاءَ. آدَمُ يَنْظُرُ إِلَيْهِ.','يَقُولُ آدَمُ: «أَهْلًا، يَا صَدِيقِي!» الْقِطُّ الصَّغِيرُ هُنَا، وَآدَمُ سَعِيدٌ.'],en:['Adam is at home. He hears a sound. What is that?','Adam goes to the door. He opens the door. He sees a small cat.','The cat is by the door. It wants water. Adam goes to the kitchen.','Now the cat has water. The cat drinks the water. Adam looks at it.','Adam says, “Hello, my friend!” The small cat is here, and Adam is happy.'],gloss:[['يسمع','he hears'],['يرى','he sees'],['صغير','small'],['ماء','water'],['يشرب','he drinks'],['يفتح','he opens']],q:'أين يرى آدم القطّ أولًا؟',options:['في المطبخ','عند الباب','في المدرسة'],answer:1,explain:'صحيح! يفتح آدم الباب، ويرى القطّ عند الباب.'},
-{title:'خبز لشخصين',level:1,theme:'في الحيّ',desc:'يذهب سامي ليشتري خبزًا. وفي الطريق، يرى جارته.',color:'#eadacb',art:'bread',focus:'يذهب · يشتري · مع',paras:['فِي الصَّبَاحِ، يُرِيدُ سَامِي أَنْ يَأْكُلَ خُبْزًا. لَا يُوجَدُ خُبْزٌ فِي الْبَيْتِ. يَأْخُذُ الْمَالَ وَيَذْهَبُ لِيَشْتَرِيَ خُبْزًا.','فِي الطَّرِيقِ، يَرَى جَارَتَهُ لَيْلَى. تَقُولُ: «صَبَاحَ الْخَيْرِ! إِلَى أَيْنَ تَذْهَبُ؟» يَقُولُ: «أَذْهَبُ لِأَشْتَرِيَ خُبْزًا.»','تَقُولُ لَيْلَى: «أَنَا أَيْضًا أُرِيدُ خُبْزًا، لٰكِنَّ ابْنِي الصَّغِيرَ نَائِمٌ فِي الْبَيْتِ.» يَقُولُ سَامِي: «لَا مُشْكِلَةَ. أَشْتَرِي لَكِ خُبْزًا.»','يَشْتَرِي سَامِي خُبْزًا لَهُ وَخُبْزًا لِلَيْلَى. ثُمَّ يَعُودُ إِلَى الْبَيْتِ. لَيْلَى عِنْدَ بَابِهَا. فِي يَدِهَا شَايٌ.','تَقُولُ: «هٰذَا الشَّايُ لَكَ. شُكْرًا عَلَى الْخُبْزِ!» يَجْلِسُ سَامِي مَعَ لَيْلَى عِنْدَ الْبَابِ. يَشْرَبَانِ الشَّايَ وَيَأْكُلَانِ الْخُبْزَ.'],en:['In the morning, Sami wants to eat bread. There is no bread at home. He takes the money and goes to buy bread.','On the way, he sees his neighbor Layla. She says, “Good morning! Where are you going?” He says, “I am going to buy bread.”','Layla says, “I want bread too, but my young son is asleep at home.” Sami says, “No problem. I will buy bread for you.”','Sami buys bread for himself and bread for Layla. Then he returns home. Layla is at her door. In her hand is tea.','She says, “This tea is for you. Thank you for the bread!” Sami sits with Layla by the door. They drink tea and eat bread.'],gloss:[['يذهب','he goes'],['يشتري','he buys'],['خبز','bread'],['أيضًا','also / too'],['يعود','he returns'],['مع','with']],q:'لماذا لا تذهب ليلى لشراء الخبز؟',options:['لا تريد خبزًا','ليس عندها مال','ابنها نائم في البيت'],answer:2,explain:'نعم، ابن ليلى الصغير نائم في البيت. لذلك يشتري سامي الخبز لها.'},
-{title:'الهاتف في الحقيبة',level:1,theme:'يوم عادي',desc:'تبحث نور عن هاتفها في كل مكان. من سيساعدها؟',color:'#dce4e7',art:'bag',focus:'يبحث · يجد · على',paras:['تُرِيدُ نُورُ أَنْ تَذْهَبَ إِلَى الْعَمَلِ. تَأْخُذُ حَقِيبَتَهَا، لٰكِنَّهَا لَا تَجِدُ هَاتِفَهَا.','تَبْحَثُ عَنِ الْهَاتِفِ عَلَى الطَّاوِلَةِ. هُنَاكَ كِتَابٌ وَكُوبٌ، لٰكِنْ لَا يُوجَدُ هَاتِفٌ. تَبْحَثُ تَحْتَ الْكِتَابِ. لَيْسَ هُنَاكَ.','يَدْخُلُ أَخُوهَا. يَقُولُ: «عَمَّ تَبْحَثِينَ؟» تَقُولُ: «أَبْحَثُ عَنْ هَاتِفِي. أَيْنَ هُوَ؟»','يَقُولُ: «أَنَا أَتَّصِلُ بِكِ الْآنَ. اِسْمَعِي!» تَسْمَعُ نُورُ صَوْتَ الْهَاتِفِ. الصَّوْتُ قَرِيبٌ جِدًّا.','تَفْتَحُ نُورُ حَقِيبَتَهَا. الْهَاتِفُ فِي الْحَقِيبَةِ! تَضْحَكُ وَتَقُولُ: «هُوَ مَعِي، وَأَنَا أَبْحَثُ عَنْهُ!»'],en:['Noor wants to go to work. She takes her bag, but she cannot find her phone.','She looks for the phone on the table. There is a book and a cup, but there is no phone. She looks under the book. It is not there.','Her brother comes in. He says, “What are you looking for?” She says, “I am looking for my phone. Where is it?”','He says, “I am calling you now. Listen!” Noor hears the sound of the phone. The sound is very close.','Noor opens her bag. The phone is in the bag! She laughs and says, “It is with me, and I am looking for it!”'],gloss:[['تبحث عن','she looks for'],['تجد','she finds'],['على','on'],['تحت','under'],['حقيبة','bag'],['قريب','near / close']],q:'أين تجد نور الهاتف؟',options:['في الحقيبة','تحت الكتاب','على الطاولة'],answer:0,explain:'نعم! تسمع نور الصوت، ثم تجد الهاتف في حقيبتها.'},
-{title:'مقعد قرب النافذة',level:2,theme:'لقاء صغير',desc:'تجلس سارة في مقهى جديد. سؤال بسيط يبدأ حكاية.',color:'#e6decf',art:'window',focus:'يجلس · يعرف · جديد',paras:['بَعْدَ الْعَمَلِ، تَذْهَبُ سَارَةُ إِلَى مَقْهًى جَدِيدٍ قُرْبَ بَيْتِهَا. تُرِيدُ أَنْ تَجْلِسَ وَتَقْرَأَ كِتَابًا. تَجِدُ مَقْعَدًا قُرْبَ النَّافِذَةِ وَتَجْلِسُ.','عَلَى الطَّاوِلَةِ كِتَابٌ صَغِيرٌ. تَنْظُرُ إِلَيْهِ. لَيْسَ كِتَابَهَا، لٰكِنَّهَا تَعْرِفُ هٰذَا الْكِتَابَ. قَرَأَتْهُ مَعَ أُمِّهَا عِنْدَمَا كَانَتْ صَغِيرَةً.','تَأْتِي امْرَأَةٌ وَتَقُولُ: «هَلْ رَأَيْتِ كِتَابًا هُنَا؟» تَقُولُ سَارَةُ: «نَعَمْ، هٰذَا هُوَ. أَنَا أُحِبُّ هٰذَا الْكِتَابَ!»','تَجْلِسُ الْمَرْأَةُ وَتَقُولُ: «أَنَا أَيْضًا أُحِبُّهُ. اِسْمِي هُدَى.» تَتَكَلَّمُ سَارَةُ مَعَ هُدَى عَنِ الْكِتَابِ، ثُمَّ عَنْ بُيُوتِهِمَا. بَيْتُ هُدَى فِي الشَّارِعِ نَفْسِهِ.','تَنْظُرُ سَارَةُ إِلَى السَّاعَةِ. حَانَ وَقْتُ الْعَوْدَةِ. تَقُولُ هُدَى: «هَلْ نَلْتَقِي هُنَا غَدًا؟» تَقُولُ سَارَةُ: «نَعَمْ!» لَمْ تَقْرَأْ كِتَابَهَا الْيَوْمَ، لٰكِنَّهَا وَجَدَتْ صَدِيقَةً جَدِيدَةً.'],en:['After work, Sara goes to a new café near her home. She wants to sit and read a book. She finds a seat near the window and sits down.','On the table is a small book. She looks at it. It is not her book, but she knows this book. She read it with her mother when she was young.','A woman comes and says, “Have you seen a book here?” Sara says, “Yes, here it is. I love this book!”','The woman sits down and says, “I love it too. My name is Huda.” Sara talks with Huda about the book, then about their homes. Huda’s home is on the same street.','Sara looks at the clock. It is time to return. Huda says, “Shall we meet here tomorrow?” Sara says, “Yes!” She did not read her book today, but she found a new friend.'],gloss:[['يجلس','he sits'],['نافذة','window'],['تعرف','she knows / recognizes'],['عندما','when'],['نفسه','the same'],['نلتقي','we meet']],q:'كيف بدأت سارة تتكلّم مع هدى؟',options:['عن العمل','عن كتاب','عن الساعة'],answer:1,explain:'صحيح، سألت هدى عن كتابها. وسارة تعرف هذا الكتاب وتحبّه.'},
-{title:'يوم بلا هاتف',level:2,theme:'شيء مختلف',desc:'ينسى عمر هاتفه. في البداية يقلق، ثم يرى يومه بطريقة جديدة.',color:'#e1e5d4',art:'tree',focus:'ينسى · وقت · يستطيع',paras:['فِي الصَّبَاحِ، خَرَجَ عُمَرُ مِنَ الْبَيْتِ بِسُرْعَةٍ. وَعِنْدَمَا وَصَلَ إِلَى الْعَمَلِ، بَحَثَ عَنْ هَاتِفِهِ. لَمْ يَجِدْهُ. تَذَكَّرَ أَنَّهُ عَلَى الطَّاوِلَةِ فِي الْبَيْتِ.','فِي الْبِدَايَةِ قَلِقَ. كَيْفَ يَقْضِي يَوْمَهُ بِلَا هَاتِفٍ؟ أَرَادَ أَنْ يَعُودَ إِلَى الْبَيْتِ، لٰكِنْ لَمْ يَكُنْ عِنْدَهُ وَقْتٌ. بَدَأَ الْعَمَلَ.','فِي وَقْتِ الطَّعَامِ، جَلَسَ مَعَ زَمِيلِهِ عَلِيٍّ. كَانَ عُمَرُ يَنْظُرُ إِلَى هَاتِفِهِ كُلَّ يَوْمٍ، لٰكِنَّهُ الْيَوْمَ تَكَلَّمَ مَعَ عَلِيٍّ. عَرَفَ أَنَّ عَلِيًّا يُحِبُّ الْمَشْيَ، مِثْلَهُ.','بَعْدَ الْعَمَلِ، عَادَ عُمَرُ مَاشِيًا. رَأَى حَدِيقَةً صَغِيرَةً وَجَلَسَ فِيهَا. سَمِعَ صَوْتَ الطُّيُورِ وَرَأَى الْأَطْفَالَ يَلْعَبُونَ. كَانَ يَمُرُّ مِنْ هُنَا كُلَّ يَوْمٍ، لٰكِنَّهُ لَمْ يَجْلِسْ هُنَا مِنْ قَبْلُ.','فِي الْبَيْتِ، وَجَدَ هَاتِفَهُ عَلَى الطَّاوِلَةِ. أَخَذَهُ، ثُمَّ وَضَعَهُ مَرَّةً أُخْرَى. قَالَ: «أَسْتَطِيعُ أَنْ أَقْضِيَ وَقْتًا جَمِيلًا بِلَا هَاتِفٍ أَيْضًا.»'],en:['In the morning, Omar left home quickly. When he arrived at work, he looked for his phone. He did not find it. He remembered that it was on the table at home.','At first, he was worried. How would he spend his day without a phone? He wanted to return home, but he did not have time. He began working.','At mealtime, he sat with his colleague Ali. Omar used to look at his phone every day, but today he talked with Ali. He learned that Ali liked walking, like him.','After work, Omar walked home. He saw a small park and sat in it. He heard birds and saw children playing. He passed this way every day, but he had never sat here before.','At home, he found his phone on the table. He picked it up, then put it down again. He said, “I can have a good time without a phone too.”'],gloss:[['نسي','he forgot'],['وقت','time'],['بلا','without'],['مثل','like / similar to'],['من قبل','before'],['أستطيع','I can']],q:'ماذا عرف عمر عن عليّ؟',options:['يحبّ المشي','لا يملك هاتفًا','يسكن في الحديقة'],answer:0,explain:'نعم، تكلّم عمر مع عليّ، وعرف أنّ عليًّا يحبّ المشي مثله.'}
-];
-const strip=s=>s.replace(/[\u064b-\u065f\u0670]/g,'');
-const levels=['تمهيدي','A1','A2'];let activeStory=0,vowels=true,translation=false,completed=[];try{completed=JSON.parse(localStorage.getItem('hikaya-read')||'[]');if(!Array.isArray(completed))completed=[]}catch{}
-function art(type){let content={coffee:'<ellipse cx="170" cy="151" rx="76" ry="12" fill="#b5a588" opacity=".3"/><path d="M117 67h90v59q-4 27-45 27t-45-27Z" fill="#f9f5e8" stroke="#657653" stroke-width="2"/><path d="M207 79q49-7 34 30-9 13-34 10" fill="none" stroke="#657653" stroke-width="6"/><ellipse cx="162" cy="68" rx="45" ry="9" fill="#69503d"/><path d="M150 49q-16-14 0-28m25 27q-16-14 0-28" fill="none" stroke="#a5a38a" stroke-width="2"/>',cat:'<path d="M98 161V28h139v133" fill="#c2cbb3" stroke="#8c9c7b" stroke-width="2"/><path d="M117 161V45h102v116" fill="#f3f1df"/><circle cx="204" cy="107" r="4" fill="#a7a98b"/><path d="M168 164q-30-32-16-58l-2-26 21 14 20-14-1 27q21 33-2 57Z" fill="#a56d4b"/><path d="M185 163q56 3 42-31" fill="none" stroke="#a56d4b" stroke-width="12" stroke-linecap="round"/><path d="m164 114 2 0m15 0 2 0" stroke="#382c25" stroke-width="3"/><path d="m170 123 3 3 3-3" fill="none" stroke="#382c25" stroke-width="2"/>',bread:'<path d="m96 96 150-8-13 78-121 0Z" fill="#bd895e"/><path d="m110 97 10-50q14-23 29 0l8 50m4-3 12-55q12-24 28-1l10 53" fill="#e3b47a" stroke="#b98552" stroke-width="2"/><path d="m123 55 19 5m-20 9 21 5m34-23 21 5m-23 10 23 5" stroke="#f8e4be" stroke-width="3"/><path d="M113 110h117m-112 17h107m-103 17h97m-86-41v58m25-58v58m25-58v58m25-58v58" stroke="#e5c395" stroke-width="2"/>',bag:'<path d="M109 69h118l13 97H97Z" fill="#9baeba" stroke="#5b7783" stroke-width="2"/><path d="M140 79V56q25-43 53 0v23" fill="none" stroke="#5b7783" stroke-width="5"/><rect x="148" y="95" width="50" height="81" rx="6" fill="#f3f0e5" stroke="#526d76" stroke-width="2"/><path d="M155 105h36v48h-36Z" fill="#c5d3c6"/><circle cx="173" cy="164" r="3" fill="#526d76"/><path d="m216 50 13-9m-8 24 18-2" stroke="#8a9d9f" stroke-width="2"/>',window:'<path d="M108 144V68a57 57 0 0 1 114 0v76Z" fill="#f6f1e2" stroke="#9ca98c" stroke-width="3"/><path d="M165 12v132m-57-59h114" stroke="#9ca98c" stroke-width="3"/><path d="m108 126 28-24 29 24 28-18 29 18v18H108Z" fill="#bbc8aa"/><circle cx="194" cy="51" r="14" fill="#d9ad73"/><path d="M80 146h177v9H80Z" fill="#ae825f"/><path d="M94 155v23m151-23v23" stroke="#ae825f" stroke-width="5"/><path d="m141 132 29 6 29-6v18l-29 6-29-6Z" fill="#71866b"/>',tree:'<path d="M170 65v100m0-52-27-25m27 8 26-20" stroke="#778264" stroke-width="5"/><ellipse cx="169" cy="58" rx="53" ry="43" fill="#a5b38b"/><ellipse cx="139" cy="85" rx="38" ry="32" fill="#92a177"/><ellipse cx="193" cy="82" rx="40" ry="34" fill="#b4c199"/><path d="M81 143h73m-69-12h66m-63-13h61m-59 27v24m53-24v24" stroke="#a9835c" stroke-width="5"/><path d="M71 171h197" stroke="#9eaa8a" stroke-width="2"/>'}[type];return `<svg viewBox="0 0 340 190" aria-hidden="true"><circle cx="170" cy="93" r="81" fill="#fff9e9" opacity=".27"/>${content}</svg>`}
-function renderCards(level='all'){document.querySelector('#story-grid').innerHTML=stories.map((s,i)=>({s,i})).filter(({s})=>level==='all'||s.level===Number(level)).map(({s,i})=>`<article class="story-card"><div class="story-cover" style="background:${s.color}">${art(s.art)}<span class="cover-label">${levels[s.level]}</span></div><div class="card-body"><div class="card-meta"><span>${s.theme}</span><span>${s.level===0?'دقيقة واحدة':s.level===1?'دقيقتان':'٣ دقائق'} للقراءة</span></div><h3>${s.title}</h3><p>${s.desc}</p><div class="card-bottom"><button onclick="openStory(${i})" aria-label="اقرأ ${s.title}">اقرأ القصة ←</button><span>${completed.includes(i)?'✓ قرأتها':s.focus}</span></div></div></article>`).join('');document.querySelector('#progress-note').textContent=completed.length?`حكايتك مستمرّة — قرأت ${completed.length} من ٦ قصص على هذا الجهاز.`:''}
-document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filters button').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});b.classList.add('active');b.setAttribute('aria-pressed','true');renderCards(b.dataset.level)}));
-const reader=document.querySelector('#reader');function openStory(i){activeStory=i;vowels=true;translation=false;renderReader();reader.showModal();reader.scrollTop=0}function renderReader(){const s=stories[activeStory];document.querySelector('#reader-content').innerHTML=`<div class="eyebrow">${levels[s.level]} · ${s.theme} · فصحى مبسّطة</div><h2>${s.title}</h2><p class="reader-deck">${s.desc}</p><div class="reader-controls"><button id="vowel-toggle" aria-pressed="${vowels}">التشكيل ${vowels?'مفعّل':'مغلق'}</button><button id="translation-toggle" aria-pressed="${translation}">English ${translation?'on':'off'}</button><button id="listen">▷ استمع</button></div><p class="reader-hint" lang="en" dir="ltr">Read for the meaning. Turn on English when you need support. Open a word below to see its meaning.</p><div id="audio-status" class="audio-status" role="status"></div><div class="story-text">${s.paras.map((p,j)=>`<p>${vowels?p:strip(p)}</p>${translation?`<p class="translation" lang="en" dir="ltr">${s.en[j]}</p>`:''}`).join('')}</div><section class="glossary"><h3>كلمات من الحكاية</h3><div class="glossary-list">${s.gloss.map(([a,e])=>`<details><summary>${a}</summary><span lang="en" dir="ltr">${e}</span></details>`).join('')}</div></section><section class="quiz"><h3>هل فهمت الحكاية؟</h3><p>${s.q}</p><div class="quiz-options">${s.options.map((a,j)=>`<button data-option="${j}">${a}</button>`).join('')}</div><p class="feedback" aria-live="polite"></p></section><button class="complete-btn" id="complete">${completed.includes(activeStory)?'✓ قرأت هذه الحكاية':'أنهيت القراءة ✓'}</button><button class="text-button" style="display:inline-flex;margin-right:15px" id="next">الحكاية التالية ←</button>`;document.querySelector('#vowel-toggle').onclick=()=>{stopAudio();vowels=!vowels;renderReader();document.querySelector('#vowel-toggle').focus()};document.querySelector('#translation-toggle').onclick=()=>{stopAudio();translation=!translation;renderReader();document.querySelector('#translation-toggle').focus()};document.querySelectorAll('[data-option]').forEach(b=>b.onclick=()=>{const correct=Number(b.dataset.option)===s.answer;b.classList.add(correct?'correct':'wrong');document.querySelector('.feedback').textContent=correct?s.explain:'لا بأس. عُد إلى الحكاية وجرّب مرة أخرى.'});document.querySelector('#complete').onclick=()=>{if(!completed.includes(activeStory))completed.push(activeStory);try{localStorage.setItem('hikaya-read',JSON.stringify(completed))}catch{}document.querySelector('#complete').textContent='✓ قرأت هذه الحكاية';renderCards(document.querySelector('.filters .active').dataset.level)};document.querySelector('#next').onclick=()=>{stopAudio();activeStory=(activeStory+1)%stories.length;renderReader();reader.scrollTop=0};document.querySelector('#listen').onclick=listen;}
-function stopAudio(){if('speechSynthesis'in window)window.speechSynthesis.cancel()}
-function listen(){const status=document.querySelector('#audio-status');if(!('speechSynthesis'in window)){status.textContent='الصوت غير متاح في هذا المتصفّح. يمكنك متابعة القراءة.';return}if(speechSynthesis.speaking){stopAudio();status.textContent='توقّف الصوت.';document.querySelector('#listen').textContent='▷ استمع';return}const voice=speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().startsWith('ar'));if(!voice){status.textContent='لا يتوفّر صوت عربي على هذا الجهاز. يمكنك متابعة القراءة أو تفعيل صوت عربي من إعدادات الجهاز.';return}const u=new SpeechSynthesisUtterance(stories[activeStory].paras.join(' '));u.voice=voice;u.lang=voice.lang;u.rate=.78;status.textContent='قراءة آلية بصوت الجهاز.';document.querySelector('#listen').textContent='□ إيقاف';u.onend=()=>{if(document.querySelector('#listen'))document.querySelector('#listen').textContent='▷ استمع'};u.onerror=()=>{status.textContent='تعذّر تشغيل الصوت. حاول مرة أخرى.';document.querySelector('#listen').textContent='▷ استمع'};speechSynthesis.speak(u)}
-document.querySelector('.close').onclick=()=>reader.close();reader.addEventListener('close',stopAudio);reader.addEventListener('click',e=>{if(e.target===reader){const r=reader.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)reader.close()}});
-const words=[['يريد','wants','يريد سامي خبزًا.','Sami wants bread.'],['يذهب','goes','يذهب آدم إلى الباب.','Adam goes to the door.'],['يرى','sees','يرى آدم قطًّا صغيرًا.','Adam sees a small cat.'],['يقول','says','يقول سامي: «هي هنا!»','Sami says, “It is here!”'],['عنده','has','عنده كتاب صغير.','He has a small book.'],['هنا','here','القهوة هنا.','The coffee is here.']];document.querySelector('#word-list').innerHTML=words.map((w,i)=>`<button data-word="${i}" aria-pressed="false">${w[0]}</button>`).join('');document.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-word]').forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');const w=words[Number(b.dataset.word)];document.querySelector('#word-example').innerHTML=`${w[2]} <span lang="en" dir="ltr">${w[1]} · ${w[3]}</span>`});document.querySelector('.filters .active').setAttribute('aria-pressed','true');renderCards();
+// Hikaya: library, word section and reader. Stories live in content/stories/*.json
+// (see docs/story-format.md); this file only renders them.
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const tokenize = t => String(t).trim().split(/\s+/).filter(Boolean);
+const PUNCT = '.,!?;:،؛؟…"\'«»()[]{}-–—';
+function splitPunct(tok){let a=0,b=tok.length;while(a<b&&PUNCT.includes(tok[a]))a++;while(b>a&&PUNCT.includes(tok[b-1]))b--;return{lead:tok.slice(0,a),word:tok.slice(a,b),trail:tok.slice(b)}}
+function normalize(text, r = {}){let s=String(text??'');if(r.collapseSpaces!==false)s=s.replace(/\s+/g,' ').trim();if(r.trimPunctuation!==false)s=s.split(' ').map(t=>splitPunct(t).word).filter(Boolean).join(' ');if(r.stripDiacritics)s=s.replace(/[ؐ-ًؚ-ٰٟۖ-ۭ]/g,'');if(r.stripTatweel)s=s.replace(/ـ/g,'');if(r.unifyAlef)s=s.replace(/[أإآٱ]/g,'ا');if(r.unifyTaMarbuta)s=s.replace(/ة/g,'ه');if(r.unifyYa)s=s.replace(/ى/g,'ي');return s}
+const arNum = n => Number(n).toLocaleString('ar-EG');
+const minutes = n => !n ? '' : n === 1 ? 'دقيقة واحدة' : n === 2 ? 'دقيقتان' : `${arNum(n)} دقائق`;
+const getJSON = path => fetch(path, {cache:'no-cache'}).then(r => { if (!r.ok) throw Object.assign(new Error(path), {status:r.status}); return r.json(); });
+
+let config = {levels:[], topics:[], answerRules:{default:{}}};
+let library = [];          // published index entries
+let story = null;          // the open story, with lookups added
+const ui = {reading:0, translation:'off', revealed:new Set(), answers:{}};
+
+/* ---------- Progress (this device only) ---------- */
+const READ_KEY = 'hikaya-read-v2';
+function readList(){try{const v=JSON.parse(localStorage.getItem(READ_KEY)||'[]');return Array.isArray(v)?v:[]}catch{return[]}}
+const isRead = s => readList().some(r => r.id === s.id && r.v === s.contentVersion);
+function markRead(s){const list=readList().filter(r=>r.id!==s.id);list.push({id:s.id,v:s.contentVersion});try{localStorage.setItem(READ_KEY,JSON.stringify(list))}catch{}}
+
+/* ---------- Library ---------- */
+const levelOf = id => config.levels.find(l => l.id === id) || {label:id, short:id};
+const topicOf = id => config.topics.find(t => t.id === id)?.label || id;
+
+function cover(s){
+  if (s.cover?.src) return `<div class="story-cover"><img src="${esc(s.cover.src)}" alt="${esc(s.cover.alt)}"><span class="cover-label">${esc(levelOf(s.level).short)}</span></div>`;
+  return `<div class="story-cover cover-pending" role="img" aria-label="${esc(s.cover?.alt || 'رسم قيد الإعداد')}"><span class="cover-note">رسم قيد الإعداد</span><span class="cover-label">${esc(levelOf(s.level).short)}</span></div>`;
+}
+
+function renderFilters(){
+  const used = new Set(library.map(s => s.level));
+  const levels = config.levels.filter(l => used.has(l.id));
+  document.querySelector('.filters').innerHTML = `<button class="active" aria-pressed="true" data-level="all">كل القصص</button>` +
+    levels.map(l => `<button aria-pressed="false" data-level="${esc(l.id)}">${esc(l.label)}</button>`).join('');
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-pressed','false'); });
+    b.classList.add('active'); b.setAttribute('aria-pressed','true'); renderCards(b.dataset.level);
+  }));
+}
+
+function renderCards(level = 'all'){
+  const grid = document.querySelector('#story-grid');
+  const list = library.filter(s => level === 'all' || s.level === level);
+  document.querySelector('#library-count').innerHTML = library.length ? `${arNum(library.length)} ${library.length > 2 && library.length < 11 ? 'قصص' : 'قصة'} <span>✳</span>` : '';
+  if (!library.length) {
+    grid.innerHTML = `<div class="empty-library"><h3>القصص الأولى قيد الكتابة.</h3><p>نكتب قصصنا ونراجعها قبل نشرها. عُد قريبًا.</p><p lang="en" dir="ltr">The first stories are being written and reviewed. Check back soon.</p></div>`;
+    document.querySelector('#progress-note').textContent = '';
+    return;
+  }
+  grid.innerHTML = list.map(s => {
+    const i = library.indexOf(s);
+    const words = (s.focus || []).join(' · ');
+    return `<article class="story-card">${cover(s)}<div class="card-body"><div class="card-meta"><span>${esc(s.topics.map(topicOf).join('، '))}</span><span>${minutes(s.readingMinutes)} للقراءة</span></div><h3>${esc(s.title.ar)}</h3><p>${esc(s.description.ar || s.description.en)}</p><div class="card-bottom"><button onclick="openStory(${i})" aria-label="اقرأ ${esc(s.title.ar)}">اقرأ القصة ←</button><span>${isRead(s) ? '✓ قرأتها' : esc(words)}</span></div></div></article>`;
+  }).join('');
+  const done = library.filter(isRead).length;
+  document.querySelector('#progress-note').textContent = done ? `حكايتك مستمرّة — قرأت ${arNum(done)} من ${arNum(library.length)} على هذا الجهاز.` : '';
+}
+
+/* ---------- Words section: built from published stories ---------- */
+async function renderWords(){
+  const box = document.querySelector('#word-list'), ex = document.querySelector('#word-example');
+  const entries = [];
+  for (const meta of library.slice(0, 6)) {
+    try {
+      const s = prepare(await getJSON(`content/stories/${meta.slug}.json`));
+      for (const v of s.vocabulary.slice(0, 3)) { const a = v.anchors?.[0]; if (a) entries.push({v, s, sid:a.sentence}); }
+    } catch {}
+  }
+  if (!entries.length) { box.innerHTML = ''; ex.innerHTML = `ستظهر هنا كلمات من القصص بعد نشرها. <span lang="en" dir="ltr">Words from the stories will appear here once they are published.</span>`; return; }
+  box.innerHTML = entries.slice(0, 8).map((e, i) => `<button data-word="${i}" aria-pressed="false">${esc(e.v.headword.full)}</button>`).join('');
+  box.querySelectorAll('[data-word]').forEach(b => b.onclick = () => {
+    box.querySelectorAll('[data-word]').forEach(x => { x.classList.remove('selected'); x.setAttribute('aria-pressed','false'); });
+    b.classList.add('selected'); b.setAttribute('aria-pressed','true');
+    const e = entries[b.dataset.word], sn = e.s.sentences.get(e.sid);
+    ex.innerHTML = `${esc(sn.text.full)} <span lang="en" dir="ltr">${esc(e.v.gloss)} — ${esc(sn.translation)}</span>`;
+  });
+}
+
+/* ---------- Story data ---------- */
+function prepare(raw){
+  const sentences = new Map(), anchors = new Map(), vocab = new Map(raw.vocabulary.map(v => [v.id, v]));
+  raw.readings.forEach((r, ri) => r.paragraphs.forEach(p => p.sentences.forEach(sn => sentences.set(sn.id, {...sn, reading:ri}))));
+  for (const v of raw.vocabulary) for (const a of v.anchors || []) (anchors.get(a.sentence) || anchors.set(a.sentence, []).get(a.sentence)).push({vocab:v.id, start:a.tokens[0], end:a.tokens[1]});
+  return {...raw, sentences, anchors, vocab};
+}
+
+/** Sentence as HTML: anchored words become buttons (interactive) or <mark> (markVocab). */
+function sentenceHTML(sid, {interactive = false, markVocab = null} = {}){
+  const tokens = tokenize(story.sentences.get(sid).text.full);
+  const anchors = story.anchors.get(sid) || [];
+  const out = [];
+  for (let i = 0; i < tokens.length;) {
+    const a = anchors.find(x => x.start === i);
+    if (!a) { out.push(esc(tokens[i])); i++; continue; }
+    const part = tokens.slice(a.start, a.end), first = splitPunct(part[0]), last = splitPunct(part[part.length - 1]);
+    const words = part.length === 1 ? first.word : [part[0].slice(first.lead.length), ...part.slice(1, -1), last.trail ? part.at(-1).slice(0, -last.trail.length) : part.at(-1)].join(' ');
+    const inner = interactive
+      ? `<button class="vocab" type="button" aria-haspopup="dialog" aria-expanded="false" data-vocab="${esc(a.vocab)}" data-sentence="${esc(sid)}">${esc(words)}</button>`
+      : markVocab === a.vocab ? `<mark>${esc(words)}</mark>` : esc(words);
+    out.push(esc(first.lead) + inner + esc(last.trail));
+    i = a.end;
+  }
+  return out.join(' ');
+}
+
+/* ---------- Reader ---------- */
+const reader = document.querySelector('#reader');
+
+async function openStory(i){
+  if (!library[i]) { document.querySelector('#stories').scrollIntoView(); return; }
+  await openSlug(library[i].slug);
+}
+
+async function openSlug(slug, {preview = false} = {}){
+  let raw;
+  try { raw = await getJSON(`content/stories/${encodeURIComponent(slug)}.json`); }
+  catch { document.querySelector('#reader-content').innerHTML = `<h2>تعذّر فتح الحكاية.</h2><p lang="en" dir="ltr">The story could not be loaded. Check your connection and try again.</p>`; reader.showModal(); return; }
+  if (raw.status !== 'published' && !preview) return;
+  story = prepare(raw); story.preview = preview && raw.status !== 'published';
+  Object.assign(ui, {reading:0, translation:'off', answers:{}}); ui.revealed.clear();
+  renderReader(); reader.showModal(); reader.scrollTop = 0;
+}
+
+function renderReader(){
+  const s = story, r = s.readings[ui.reading], level = levelOf(s.level);
+  const trOn = level.translations !== false;
+  const tab = (label, i) => `<button role="tab" aria-selected="${i === ui.reading}" tabindex="${i === ui.reading ? 0 : -1}" data-reading="${i}">${esc(label)}</button>`;
+  const trBtn = (mode, label) => `<button role="radio" aria-checked="${ui.translation === mode}" data-tr="${mode}">${label}</button>`;
+  document.querySelector('#reader-content').innerHTML = `
+    <div class="eyebrow">${esc(level.short)} · ${esc(s.topics.map(topicOf).join('، '))} · فصحى مبسّطة</div>
+    <h2>${esc(s.title.ar)}</h2>${s.title.en ? `<p class="reader-en" lang="en" dir="ltr">${esc(s.title.en)}</p>` : ''}
+    <p class="reader-deck">${esc(s.description.ar || s.description.en)}</p>
+    ${s.preview ? `<p class="notice"><b>معاينة:</b> هذه الحكاية غير منشورة. <span lang="en" dir="ltr">Preview: not listed in the library.</span></p>` : ''}
+    ${s.contentState === 'sample' ? `<p class="notice"><b>محتوى تجريبي.</b> <span lang="en" dir="ltr">Sample text for testing the reader, not approved learning material.</span></p>` : ''}
+    <div class="reader-controls">
+      ${s.readings.length > 1 ? `<div role="tablist" aria-label="نسخ الحكاية" class="version-tabs">${s.readings.map((x, i) => tab(x.label, i)).join('')}</div>` : ''}
+      ${trOn ? `<div role="radiogroup" aria-label="الترجمة" class="tr-modes">${trBtn('off','بلا ترجمة')}${trBtn('pick','جملة بجملة')}${trBtn('all','كل الترجمة')}</div>` : ''}
+      <button id="listen">▷ استمع</button>
+    </div>
+    <p class="reader-hint" lang="en" dir="ltr">Read for the meaning. Tap an underlined word for its meaning. Translation stays hidden until you ask for it.</p>
+    <div id="audio-status" class="audio-status" role="status"></div>
+    <div class="story-text" id="story-text">${r.paragraphs.map(p => `<p>${p.sentences.map((sn, k) => {
+      const shown = ui.translation === 'all' || (ui.translation === 'pick' && ui.revealed.has(sn.id));
+      const btn = trOn && ui.translation === 'pick' && sn.translation ? ` <button class="sent-btn" lang="en" dir="ltr" data-tr-sentence="${esc(sn.id)}" aria-expanded="${shown}" aria-label="Translation of this sentence">EN</button>` : '';
+      const tr = trOn && shown && sn.translation ? `<span class="translation sent-tr" lang="en" dir="ltr">${esc(sn.translation)}</span>` : '';
+      return `<span class="sentence" id="s-${esc(sn.id)}" tabindex="-1">${sentenceHTML(sn.id, {interactive:true})}</span>${btn}${tr}`;
+    }).join(' ')}</p>`).join('')}</div>
+    <section class="glossary"><h3>كلمات من الحكاية</h3><div class="glossary-list">${s.vocabulary.map(v => `<details><summary>${esc(v.headword.full)}</summary><span lang="en" dir="ltr">${esc(v.gloss)}${v.note ? ` — ${esc(v.note)}` : ''}</span></details>`).join('')}</div></section>
+    ${quizHTML()}
+    <button class="complete-btn" id="complete">${isRead(s) ? '✓ قرأت هذه الحكاية' : 'أنهيت القراءة ✓'}</button>
+    ${library.length > 1 && !s.preview ? `<button class="text-button next-btn" id="next">الحكاية التالية ←</button>` : ''}`;
+  bindReader();
+}
+
+/* ---------- Questions ---------- */
+const comp = () => story.activities?.comprehension;
+function quizHTML(){
+  const c = comp(); if (!c?.items?.length) return '';
+  const item = (it, n) => {
+    const head = `<p class="q-num">السؤال ${arNum(n)}</p>`;
+    let body = '';
+    if (it.type === 'choice') body = `<p class="q-prompt">${esc(it.prompt)}</p><div class="quiz-options">${it.options.map(o => `<button data-pick="${esc(o.id)}" aria-pressed="false">${esc(o.text)}</button>`).join('')}</div>`;
+    if (it.type === 'truefalse') body = `<p class="q-prompt">${esc(it.statement)}</p><div class="quiz-options"><button data-pick="true" aria-pressed="false">صح</button><button data-pick="false" aria-pressed="false">خطأ</button></div>`;
+    if (it.type === 'sequence') {
+      const order = ui.answers[it.id]?.order || shuffled(it.steps.map(x => x.id), it.id);
+      ui.answers[it.id] = {...ui.answers[it.id], order};
+      body = `<p class="q-prompt q-en" lang="en" dir="ltr">${esc(it.prompt)}</p><ol class="seq">${order.map((sid, k) => `<li><span>${esc(it.steps.find(x => x.id === sid).text)}</span><span class="seq-moves"><button data-move="${esc(sid)}" data-dir="-1" ${k === 0 ? 'disabled' : ''} aria-label="Move earlier">↑</button><button data-move="${esc(sid)}" data-dir="1" ${k === order.length - 1 ? 'disabled' : ''} aria-label="Move later">↓</button></span></li>`).join('')}</ol>`;
+    }
+    if (it.type === 'shortanswer') body = `<p class="q-prompt">${esc(it.prompt)}</p><input class="q-input" lang="ar" dir="rtl" autocomplete="off" aria-label="إجابتك" value="${esc(ui.answers[it.id]?.typed || '')}"><p class="q-hint" lang="en" dir="ltr">${esc(it.hint || 'Type your answer in Arabic.')}</p>`;
+    return `<div class="q" data-item="${esc(it.id)}">${head}${body}<button class="check-btn" data-check="${esc(it.id)}">تحقّق</button><div class="q-feedback" aria-live="polite"></div></div>`;
+  };
+  return `<section class="quiz"><h3>هل فهمت الحكاية؟</h3><p class="quiz-intro" lang="en" dir="ltr">${esc(c.instructions)}</p>${c.items.map((it, i) => item(it, i + 1)).join('')}<p class="score" aria-live="polite"></p></section>`;
+}
+
+function shuffled(ids, seed){
+  const a = [...ids]; let x = [...seed].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) || 1;
+  for (let i = a.length - 1; i > 0; i--) { x = (x * 1103515245 + 12345) >>> 0; const j = x % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+  if (a.every((v, i) => v === ids[i])) a.push(a.shift()); // never start solved
+  return a;
+}
+
+function check(it, box){
+  const ans = ui.answers[it.id] || {};
+  let ok, extra = '';
+  if (it.type === 'choice') { if (ans.pick == null) return need(box); ok = ans.pick === it.answer; }
+  if (it.type === 'truefalse') { if (ans.pick == null) return need(box); ok = (ans.pick === 'true') === it.answer; if (it.answer === false && it.correction) extra = `<p>التصحيح: <span class="ar-line">${esc(it.correction)}</span></p>`; }
+  if (it.type === 'sequence') ok = ans.order.every((sid, i) => sid === it.steps[i].id);
+  if (it.type === 'shortanswer') {
+    const rules = config.answerRules[it.rules] || config.answerRules.default;
+    const typed = normalize(box.querySelector('.q-input').value, rules);
+    if (!typed) return need(box);
+    ok = it.accepted.some(a => normalize(a, rules) === typed);
+    if (!ok) extra = `<p>إجابة مقبولة: <span class="ar-line">${esc(it.accepted[0])}</span></p>`;
+  }
+  const ev = it.evidence?.find(e => story.sentences.get(e)?.reading === ui.reading) || it.evidence?.[0];
+  box.querySelector('.q-feedback').innerHTML = `<div class="feedback-box ${ok ? 'ok' : 'no'}"><p class="fb-title">${ok ? 'صحيح!' : 'ليس تمامًا.'}</p>${extra}<p lang="en" dir="ltr">${esc(it.explanation)}</p>${ev ? `<p class="ar-line">«${sentenceHTML(ev)}»</p><button class="text-button evidence" data-evidence="${esc(ev)}">أرني في الحكاية ←</button>` : ''}</div>`;
+  ui.answers[it.id] = {...ans, checked:true, ok};
+  const items = comp().items, done = items.filter(x => ui.answers[x.id]?.checked);
+  if (done.length === items.length) document.querySelector('.quiz .score').textContent = `${arNum(done.filter(x => ui.answers[x.id].ok).length)} من ${arNum(items.length)} إجابات صحيحة.`;
+}
+const need = box => { box.querySelector('.q-feedback').innerHTML = `<p class="q-hint">اختر إجابة أولًا. <span lang="en" dir="ltr">Answer first.</span></p>`; };
+
+function showSentence(sid){
+  const sn = story.sentences.get(sid); if (!sn) return;
+  if (sn.reading !== ui.reading) { ui.reading = sn.reading; renderReader(); }
+  const el = document.getElementById(`s-${sid}`);
+  el.scrollIntoView({block:'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 2200);
+  el.focus({preventScroll:true});
+}
+
+/* ---------- Word popover ---------- */
+let pop = null;
+function closePop(restore = true){ if (!pop) return; pop.el.remove(); pop.btn.setAttribute('aria-expanded','false'); if (restore) pop.btn.focus(); pop = null; }
+function openPop(btn){
+  const same = pop?.btn === btn; closePop(false); if (same) { btn.focus(); return; }
+  const v = story.vocab.get(btn.dataset.vocab);
+  const el = document.createElement('div');
+  el.className = 'vocab-pop'; el.setAttribute('role','dialog'); el.setAttribute('aria-label', v.headword.full); el.tabIndex = -1;
+  el.innerHTML = `<button class="pop-close" aria-label="إغلاق">✕</button><p class="pop-word">${esc(btn.textContent)}</p><p class="pop-gloss" lang="en" dir="ltr">${esc(v.gloss)}</p><p class="pop-sentence">${sentenceHTML(btn.dataset.sentence, {markVocab:v.id})}</p>${v.note ? `<p class="pop-note" lang="en" dir="ltr">${esc(v.note)}</p>` : ''}${v.audio?.src ? `<button class="text-button pop-audio">▷ استمع للكلمة</button>` : ''}`;
+  reader.append(el);
+  el.querySelector('.pop-close').onclick = () => closePop();
+  el.querySelector('.pop-audio')?.addEventListener('click', () => new Audio(v.audio.src).play().catch(() => {}));
+  btn.setAttribute('aria-expanded','true'); pop = {el, btn}; el.focus();
+}
+reader.addEventListener('cancel', e => { if (pop) { e.preventDefault(); closePop(); } }); // Esc closes the word first, then the story
+reader.addEventListener('pointerdown', e => { if (pop && !pop.el.contains(e.target) && e.target !== pop.btn) closePop(false); });
+
+/* ---------- Reader events ---------- */
+function bindReader(){
+  const root = document.querySelector('#reader-content');
+  root.onclick = e => {
+    const t = e.target.closest('button'); if (!t) return;
+    if (t.dataset.reading) { stopAudio(); ui.reading = Number(t.dataset.reading); ui.revealed.clear(); renderReader(); document.querySelector(`[data-reading="${ui.reading}"]`).focus(); }
+    else if (t.dataset.tr) { ui.translation = t.dataset.tr; ui.revealed.clear(); renderReader(); document.querySelector(`[data-tr="${t.dataset.tr}"]`).focus(); }
+    else if (t.dataset.trSentence) { const id = t.dataset.trSentence; ui.revealed.has(id) ? ui.revealed.delete(id) : ui.revealed.add(id); renderReader(); document.querySelector(`[data-tr-sentence="${id}"]`).focus(); }
+    else if (t.classList.contains('vocab')) openPop(t);
+    else if (t.dataset.pick) { const q = t.closest('.q'); ui.answers[q.dataset.item] = {...ui.answers[q.dataset.item], pick:t.dataset.pick}; q.querySelectorAll('[data-pick]').forEach(b => b.setAttribute('aria-pressed', String(b === t))); }
+    else if (t.dataset.move) {
+      const q = t.closest('.q'), id = q.dataset.item, order = ui.answers[id].order, i = order.indexOf(t.dataset.move), j = i + Number(t.dataset.dir);
+      [order[i], order[j]] = [order[j], order[i]];
+      const it = comp().items.find(x => x.id === id); q.outerHTML = quizItemRefresh(it);
+      document.querySelector(`.q[data-item="${id}"] [data-move="${t.dataset.move}"]:not([disabled])`)?.focus();
+    }
+    else if (t.dataset.check) { const it = comp().items.find(x => x.id === t.dataset.check); check(it, t.closest('.q')); }
+    else if (t.dataset.evidence) showSentence(t.dataset.evidence);
+    else if (t.id === 'listen') listen();
+    else if (t.id === 'complete') { markRead(story); t.textContent = '✓ قرأت هذه الحكاية'; renderCards(document.querySelector('.filters .active')?.dataset.level || 'all'); }
+    else if (t.id === 'next') { stopAudio(); const i = library.findIndex(x => x.slug === story.slug); openSlug(library[(i + 1) % library.length].slug); }
+  };
+  root.oninput = e => { const q = e.target.closest('.q'); if (q && e.target.classList.contains('q-input')) ui.answers[q.dataset.item] = {...ui.answers[q.dataset.item], typed:e.target.value}; };
+  root.onkeydown = e => {
+    if (e.key === 'Enter' && e.target.classList.contains('q-input')) e.target.closest('.q').querySelector('[data-check]').click();
+    const tab = e.target.closest('[role=tab]');
+    if (tab && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { // RTL: left moves forward
+      const n = story.readings.length; ui.reading = (ui.reading + (e.key === 'ArrowLeft' ? 1 : -1) + n) % n; ui.revealed.clear(); renderReader(); document.querySelector(`[data-reading="${ui.reading}"]`).focus();
+    }
+  };
+}
+function quizItemRefresh(it){
+  const tmp = document.createElement('div'); tmp.innerHTML = quizHTML();
+  return tmp.querySelector(`.q[data-item="${it.id}"]`).outerHTML;
+}
+
+/* ---------- Audio: a real recording when the story has one, else the device voice ---------- */
+let player = null;
+function stopAudio(){ if ('speechSynthesis' in window) speechSynthesis.cancel(); if (player) { player.pause(); player = null; } }
+function listen(){
+  const status = document.querySelector('#audio-status'), btn = document.querySelector('#listen');
+  const playing = player || ('speechSynthesis' in window && speechSynthesis.speaking);
+  if (playing) { stopAudio(); status.textContent = 'توقّف الصوت.'; btn.textContent = '▷ استمع'; return; }
+  const r = story.readings[ui.reading];
+  if (r.audio?.src) {
+    player = new Audio(r.audio.src);
+    player.onended = () => { player = null; btn.textContent = '▷ استمع'; };
+    player.onerror = () => { player = null; status.textContent = 'تعذّر تشغيل التسجيل.'; btn.textContent = '▷ استمع'; };
+    player.play().catch(() => {}); btn.textContent = '□ إيقاف'; status.textContent = 'تسجيل صوتي للحكاية.'; return;
+  }
+  if (!('speechSynthesis' in window)) { status.textContent = 'الصوت غير متاح في هذا المتصفّح. يمكنك متابعة القراءة.'; return; }
+  const voice = speechSynthesis.getVoices().find(v => v.lang.toLowerCase().startsWith('ar'));
+  if (!voice) { status.textContent = 'لا يتوفّر صوت عربي على هذا الجهاز. يمكنك متابعة القراءة أو تفعيل صوت عربي من إعدادات الجهاز.'; return; }
+  const u = new SpeechSynthesisUtterance(r.paragraphs.flatMap(p => p.sentences.map(s => s.text.full)).join(' '));
+  u.voice = voice; u.lang = voice.lang; u.rate = .78;
+  status.textContent = 'قراءة آلية بصوت الجهاز، وليست تسجيلًا معتمدًا.'; btn.textContent = '□ إيقاف';
+  u.onend = () => { const b = document.querySelector('#listen'); if (b) b.textContent = '▷ استمع'; };
+  u.onerror = () => { status.textContent = 'تعذّر تشغيل الصوت. حاول مرة أخرى.'; btn.textContent = '▷ استمع'; };
+  speechSynthesis.speak(u);
+}
+
+document.querySelector('.close').onclick = () => reader.close();
+reader.addEventListener('close', () => { stopAudio(); closePop(false); });
+reader.addEventListener('click', e => { if (e.target === reader) { const r = reader.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) reader.close(); } });
+
+/* ---------- Start ---------- */
+(async () => {
+  try {
+    [config, library] = await Promise.all([getJSON('content/config.json'), getJSON('content/index.json').then(d => d.stories.filter(s => s.status === 'published'))]);
+  } catch {
+    document.querySelector('#story-grid').innerHTML = `<div class="empty-library"><h3>تعذّر تحميل القصص.</h3><p lang="en" dir="ltr">The stories could not be loaded. Refresh the page to try again.</p></div>`;
+    return;
+  }
+  renderFilters(); renderCards(); renderWords();
+  const preview = new URLSearchParams(location.search).get('preview');
+  if (preview && /^[a-z0-9-]+$/.test(preview)) openSlug(preview, {preview:true});
+})();
