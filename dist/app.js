@@ -101,7 +101,8 @@ function sentenceHTML(sid, {interactive = false, markVocab = null} = {}){
     const inner = interactive
       ? `<button class="vocab" type="button" aria-haspopup="dialog" aria-expanded="false" data-vocab="${esc(a.vocab)}" data-sentence="${esc(sid)}">${esc(words)}</button>`
       : markVocab === a.vocab ? `<mark>${esc(words)}</mark>` : esc(words);
-    out.push(esc(first.lead) + inner + esc(last.trail));
+    // nowrap keeps quotes and ؟ on the same line as the word they touch
+    out.push(first.lead || last.trail ? `<span class="tok">${esc(first.lead)}${inner}${esc(last.trail)}</span>` : inner);
     i = a.end;
   }
   return out.join(' ');
@@ -139,7 +140,7 @@ function renderReader(){
     <h2>${esc(s.title.ar)}</h2>${s.title.en ? `<p class="reader-en" lang="en" dir="ltr">${esc(s.title.en)}</p>` : ''}
     <p class="reader-deck">${esc(s.description.ar || s.description.en)}</p>
     ${s.preview ? `<p class="notice"><b>معاينة:</b> هذه الحكاية غير منشورة. <span lang="en" dir="ltr">Preview: not listed in the library.</span></p>` : ''}
-    ${s.contentState === 'sample' ? `<p class="notice"><b>محتوى تجريبي.</b> <span lang="en" dir="ltr">Sample text for testing the reader, not approved learning material.</span></p>` : ''}
+    ${s.contentState === 'sample' ? `<p class="notice"><b>مسودّة غير معتمدة.</b> <span lang="en" dir="ltr">Draft: translations, questions and activities are not yet approved learning material.</span></p>` : ''}
     <div class="reader-controls">
       ${s.readings.length > 1 ? `<div role="tablist" aria-label="نسخ الحكاية" class="version-tabs">${s.readings.map((x, i) => tab(x.label, i)).join('')}</div>` : ''}
       ${trOn ? `<div role="radiogroup" aria-label="الترجمة" class="tr-modes">${trBtn('off','بلا ترجمة')}${trBtn('pick','جملة بجملة')}${trBtn('all','كل الترجمة')}</div>` : ''}

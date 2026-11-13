@@ -86,3 +86,4 @@
 #pl-time{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 @media (max-width:640px){.player{margin:20px -24px -24px;padding:8px 14px}.fc-word{font-size:34px}.speak-line{font-size:24px}}
 .tr-modes [role=radio][aria-checked=true]{background:var(--green);border-color:var(--green);color:#fff}
+.tok{white-space:nowrap}

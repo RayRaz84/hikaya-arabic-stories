@@ -14,9 +14,9 @@ let chromium;
 try { ({ chromium } = require('playwright')); } catch { ({ chromium } = createRequire('/opt/node22/lib/node_modules/')('playwright')); }
 
 const BASE = 'http://127.0.0.1:8097/';
-const SAMPLE = `${BASE}?preview=where-is-the-phone`;
+const SAMPLE = `${BASE}?preview=khalid-and-the-ball`;
 const shots = join(root, 'tests/screenshots');
-const storyFile = join(root, 'dist/content/stories/where-is-the-phone.json');
+const storyFile = join(root, 'dist/content/stories/khalid-and-the-ball.json');
 const validate = () => spawnSync(process.execPath, [join(root, 'scripts/validate.mjs')], { encoding: 'utf8' });
 
 let passed = 0; const failures = [];
@@ -59,9 +59,9 @@ try {
     const p = await page();
     await openSample(p);
     const text = await p.locator('#reader-content').textContent();
-    assert(text.includes('معاينة') && text.includes('محتوى تجريبي'), 'notices missing');
+    assert(text.includes('معاينة') && text.includes('مسودّة'), 'notices missing');
     await p.screenshot({ path: join(shots, 'reader-1280.png') });
-    await p.goto(`${BASE}#preview-where-is-the-phone`); await p.reload();
+    await p.goto(`${BASE}#preview-khalid-and-the-ball`); await p.reload();
     await p.waitForSelector('#reader[open] .sentence');
     await p.context().close();
   });
@@ -106,9 +106,11 @@ try {
     }
     await p.locator('[data-reading="0"]').click();
     const word = p.locator('#story-text .vocab').first();
-    assert((await word.textContent()) === 'الْهَاتِفَ', 'punctuation must stay outside the anchor');
+    assert((await word.textContent()) === 'يُرِيدُ', 'first anchored word should be يُرِيدُ');
     await word.focus(); await p.keyboard.press('Enter');
-    assert((await p.locator('.vocab-pop').textContent()).includes('the phone'), 'gloss missing');
+    assert((await p.locator('.vocab-pop').textContent()).includes('wants'), 'gloss missing');
+    const ball = p.locator('#s-a-s1 .vocab').nth(1);
+    assert((await ball.textContent()) === 'الْكُرَةَ', 'punctuation must stay outside the anchor');
     await p.screenshot({ path: join(shots, 'reader-popover-1280.png') });
     await p.keyboard.press('Escape');
     assert(await p.locator('.vocab-pop').count() === 0, 'Escape did not close the popover');
@@ -140,12 +142,12 @@ try {
     assert(await q(2).locator('.feedback-box.ok').count() === 1, 'sequence should be correct');
     await q(3).locator(`[data-pick="${items[3].answer}"]`).click();
     await q(3).locator('[data-check]').click();
-    await q(4).locator('.q-input').fill('الحقيبه');
+    await q(4).locator('.q-input').fill('ليلى');
     await q(4).locator('[data-check]').click();
-    assert(await q(4).locator('.feedback-box.no').count() === 1, 'ة/ه must not be merged by default');
-    await q(4).locator('.q-input').fill('فِي الْحَقِيبَةِ.');
+    assert(await q(4).locator('.feedback-box.no').count() === 1, 'wrong answer accepted');
+    await q(4).locator('.q-input').fill('القط.');
     await q(4).locator('.q-input').press('Enter');
-    assert(await q(4).locator('.feedback-box.ok').count() === 1, 'vowelled answer should match');
+    assert(await q(4).locator('.feedback-box.ok').count() === 1, 'unvowelled answer with punctuation should match the vowelled accepted answer');
     assert((await p.locator('.quiz .score').textContent()).includes('٤ من ٥'), 'score wrong');
     await q(0).locator('[data-evidence]').click();
     assert(await p.evaluate(() => document.activeElement?.id === 's-a-s1'), 'evidence link did not focus the sentence');
@@ -226,7 +228,7 @@ try {
     const p = await page(390);
     const withAudio = structuredClone(story); withAudio.readings[0].audio = { src: 'test-reading.wav' };
     const n = 12000, wav = Buffer.alloc(44 + n); wav.write('RIFF', 0); wav.writeUInt32LE(36 + n, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16); wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22); wav.writeUInt32LE(8000, 24); wav.writeUInt32LE(8000, 28); wav.writeUInt16LE(1, 32); wav.writeUInt16LE(8, 34); wav.write('data', 36); wav.writeUInt32LE(n, 40); wav.fill(128, 44);
-    await p.route('**/content/stories/where-is-the-phone.json', (r) => r.fulfill({ json: withAudio }));
+    await p.route('**/content/stories/khalid-and-the-ball.json', (r) => r.fulfill({ json: withAudio }));
     await p.route('**/test-reading.wav', (r) => r.fulfill({ body: wav, contentType: 'audio/wav' }));
     await openSample(p);
     const play = p.locator('#pl-play');
@@ -253,7 +255,7 @@ try {
       assert((await p.locator('#reader-content h2').first().textContent()) === 'حِكَايَةٌ ثَانِيَةٌ', 'link opened the wrong story');
       assert((await p.locator('.reader-top-sub').textContent()).includes('القصص'), 'breadcrumb missing');
       await p.locator('.related-card').first().click();
-      await p.waitForFunction(() => location.hash === '#story-where-is-the-phone');
+      await p.waitForFunction(() => location.hash === '#story-khalid-and-the-ball');
       await p.locator('#copy-link').click();
       assert((await p.locator('#copy-status').textContent()).trim().length > 0, 'copy link gave no feedback');
       assert((await p.locator('.share a').getAttribute('href')).includes('whatsapp'), 'WhatsApp link missing');

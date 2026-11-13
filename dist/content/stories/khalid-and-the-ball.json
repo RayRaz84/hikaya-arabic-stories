@@ -1,0 +1,2576 @@
+{
+  "schemaVersion": 1,
+  "id": "story-0001",
+  "slug": "khalid-and-the-ball",
+  "contentVersion": 1,
+  "status": "draft",
+  "contentState": "sample",
+  "featured": true,
+  "title": {
+    "ar": "خَالِدٌ وَالْكُرَةُ",
+    "en": "Khalid and the ball"
+  },
+  "description": {
+    "ar": "خَالِدٌ يُرِيدُ الْكُرَةَ. أَيْنَ الْكُرَةُ؟",
+    "en": "Khalid wants his ball, but it isn't anywhere he looks."
+  },
+  "level": "level-0",
+  "topics": [
+    "home",
+    "animals"
+  ],
+  "collections": [
+    "khalid"
+  ],
+  "course": null,
+  "unit": null,
+  "readingMinutes": 2,
+  "cover": {
+    "src": null,
+    "alt": "Illustration pending: Khalid looking for his ball at home."
+  },
+  "textVariants": [
+    "full"
+  ],
+  "defaultVariant": "full",
+  "readings": [
+    {
+      "id": "A",
+      "label": "القصة أ",
+      "audio": null,
+      "paragraphs": [
+        {
+          "id": "a-p1",
+          "sentences": [
+            {
+              "id": "a-s1",
+              "text": {
+                "full": "خَالِدٌ يُرِيدُ الْكُرَةَ."
+              },
+              "translation": "Khalid wants the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s2",
+              "text": {
+                "full": "لَيْسَ عِنْدَهُ كُرَةٌ."
+              },
+              "translation": "He doesn't have a ball.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p2",
+          "sentences": [
+            {
+              "id": "a-s3",
+              "text": {
+                "full": "يَذْهَبُ إِلَى الْمَطْبَخِ."
+              },
+              "translation": "He goes to the kitchen.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s4",
+              "text": {
+                "full": "يَنْظُرُ."
+              },
+              "translation": "He looks.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s5",
+              "text": {
+                "full": "لَيْسَ هُنَاكَ كُرَةٌ."
+              },
+              "translation": "There is no ball there.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p3",
+          "sentences": [
+            {
+              "id": "a-s6",
+              "text": {
+                "full": "ثُمَّ يَذْهَبُ إِلَى لَيْلَى."
+              },
+              "translation": "Then he goes to Layla.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p4",
+          "sentences": [
+            {
+              "id": "a-s7",
+              "text": {
+                "full": "«هَلْ عِنْدَكِ الْكُرَةُ؟»"
+              },
+              "translation": "“Do you have the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p5",
+          "sentences": [
+            {
+              "id": "a-s8",
+              "text": {
+                "full": "«لَا، لَيْسَ عِنْدِي كُرَةٌ»."
+              },
+              "translation": "“No, I don't have a ball.”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p6",
+          "sentences": [
+            {
+              "id": "a-s9",
+              "text": {
+                "full": "هُنَاكَ قِطٌّ عِنْدَ الْبَابِ."
+              },
+              "translation": "There is a cat by the door.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s10",
+              "text": {
+                "full": "الْكُرَةُ تَحْتَ الْقِطِّ!"
+              },
+              "translation": "The ball is under the cat!",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p7",
+          "sentences": [
+            {
+              "id": "a-s11",
+              "text": {
+                "full": "«هَلْ تُرِيدُ الْكُرَةَ؟»"
+              },
+              "translation": "“Do you want the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p8",
+          "sentences": [
+            {
+              "id": "a-s12",
+              "text": {
+                "full": "يَقُومُ الْقِطُّ."
+              },
+              "translation": "The cat gets up.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "a-s13",
+              "text": {
+                "full": "يَأْخُذُ خَالِدٌ الْكُرَةَ."
+              },
+              "translation": "Khalid takes the ball.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "a-p9",
+          "sentences": [
+            {
+              "id": "a-s14",
+              "text": {
+                "full": "يَلْعَبُ خَالِدٌ مَعَ الْقِطِّ."
+              },
+              "translation": "Khalid plays with the cat.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "القصة ب",
+      "audio": null,
+      "paragraphs": [
+        {
+          "id": "b-p1",
+          "sentences": [
+            {
+              "id": "b-s1",
+              "text": {
+                "full": "خَالِدٌ يُرِيدُ الْكُرَةَ."
+              },
+              "translation": "Khalid wants the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s2",
+              "text": {
+                "full": "لَيْسَ عِنْدَهُ كُرَةٌ."
+              },
+              "translation": "He doesn't have a ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s3",
+              "text": {
+                "full": "يُرِيدُ الْكُرَةَ جِدًّا."
+              },
+              "translation": "He wants the ball very much.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p2",
+          "sentences": [
+            {
+              "id": "b-s4",
+              "text": {
+                "full": "يَذْهَبُ إِلَى الْمَطْبَخِ."
+              },
+              "translation": "He goes to the kitchen.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s5",
+              "text": {
+                "full": "يَنْظُرُ تَحْتَ الطَّاوِلَةِ."
+              },
+              "translation": "He looks under the table.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s6",
+              "text": {
+                "full": "هُنَاكَ كِتَابٌ."
+              },
+              "translation": "There is a book.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s7",
+              "text": {
+                "full": "لَيْسَ هُنَاكَ كُرَةٌ."
+              },
+              "translation": "There is no ball there.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p3",
+          "sentences": [
+            {
+              "id": "b-s8",
+              "text": {
+                "full": "ثُمَّ يَذْهَبُ إِلَى لَيْلَى."
+              },
+              "translation": "Then he goes to Layla.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p4",
+          "sentences": [
+            {
+              "id": "b-s9",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «يَا لَيْلَى، هَلْ عِنْدَكِ الْكُرَةُ؟»"
+              },
+              "translation": "Khalid says, “Layla, do you have the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p5",
+          "sentences": [
+            {
+              "id": "b-s10",
+              "text": {
+                "full": "تَقُولُ لَيْلَى: «لَا، لَيْسَ عِنْدِي كُرَةٌ»."
+              },
+              "translation": "Layla says, “No, I don't have a ball.”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p6",
+          "sentences": [
+            {
+              "id": "b-s11",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «أُرِيدُ الْكُرَةَ!»"
+              },
+              "translation": "Khalid says, “I want the ball!”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p7",
+          "sentences": [
+            {
+              "id": "b-s12",
+              "text": {
+                "full": "تَقُولُ لَيْلَى: «هُنَاكَ قِطٌّ عِنْدَ الْبَابِ»."
+              },
+              "translation": "Layla says, “There is a cat by the door.”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p8",
+          "sentences": [
+            {
+              "id": "b-s13",
+              "text": {
+                "full": "يَذْهَبُ خَالِدٌ إِلَى الْبَابِ."
+              },
+              "translation": "Khalid goes to the door.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s14",
+              "text": {
+                "full": "الْقِطُّ كَبِيرٌ."
+              },
+              "translation": "The cat is big.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s15",
+              "text": {
+                "full": "الْقِطُّ جَالِسٌ."
+              },
+              "translation": "The cat is sitting.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s16",
+              "text": {
+                "full": "الْكُرَةُ تَحْتَ الْقِطِّ!"
+              },
+              "translation": "The ball is under the cat!",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p9",
+          "sentences": [
+            {
+              "id": "b-s17",
+              "text": {
+                "full": "يَضْحَكُ خَالِدٌ."
+              },
+              "translation": "Khalid laughs.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s18",
+              "text": {
+                "full": "الْقِطُّ جَالِسٌ عَلَى الْكُرَةِ!"
+              },
+              "translation": "The cat is sitting on the ball!",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p10",
+          "sentences": [
+            {
+              "id": "b-s19",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «يَا قِطُّ، هَلْ تُرِيدُ الْكُرَةَ؟»"
+              },
+              "translation": "Khalid says, “Cat, do you want the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p11",
+          "sentences": [
+            {
+              "id": "b-s20",
+              "text": {
+                "full": "يَنْظُرُ الْقِطُّ إِلَى الْكُرَةِ."
+              },
+              "translation": "The cat looks at the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s21",
+              "text": {
+                "full": "ثُمَّ يَقُومُ."
+              },
+              "translation": "Then it gets up.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p12",
+          "sentences": [
+            {
+              "id": "b-s22",
+              "text": {
+                "full": "يَأْخُذُ خَالِدٌ الْكُرَةَ."
+              },
+              "translation": "Khalid takes the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s23",
+              "text": {
+                "full": "يَنْظُرُ الْقِطُّ إِلَى الْكُرَةِ."
+              },
+              "translation": "The cat looks at the ball.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p13",
+          "sentences": [
+            {
+              "id": "b-s24",
+              "text": {
+                "full": "يُعْطِي خَالِدٌ الْكُرَةَ لِلْقِطِّ."
+              },
+              "translation": "Khalid gives the ball to the cat.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p14",
+          "sentences": [
+            {
+              "id": "b-s25",
+              "text": {
+                "full": "يَلْعَبُ الْقِطُّ بِالْكُرَةِ."
+              },
+              "translation": "The cat plays with the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "b-s26",
+              "text": {
+                "full": "ثُمَّ تَرْجِعُ الْكُرَةُ إِلَى خَالِدٍ."
+              },
+              "translation": "Then the ball comes back to Khalid.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "b-p15",
+          "sentences": [
+            {
+              "id": "b-s27",
+              "text": {
+                "full": "يَلْعَبُ خَالِدٌ مَعَ الْقِطِّ."
+              },
+              "translation": "Khalid plays with the cat.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "label": "القصة ج",
+      "audio": null,
+      "paragraphs": [
+        {
+          "id": "c-p1",
+          "sentences": [
+            {
+              "id": "c-s1",
+              "text": {
+                "full": "خَالِدٌ يُرِيدُ الْكُرَةَ."
+              },
+              "translation": "Khalid wants the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s2",
+              "text": {
+                "full": "لَيْسَ عِنْدَهُ كُرَةٌ."
+              },
+              "translation": "He doesn't have a ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s3",
+              "text": {
+                "full": "يُرِيدُ الْكُرَةَ جِدًّا."
+              },
+              "translation": "He wants the ball very much.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p2",
+          "sentences": [
+            {
+              "id": "c-s4",
+              "text": {
+                "full": "يَذْهَبُ خَالِدٌ إِلَى الْمَطْبَخِ."
+              },
+              "translation": "Khalid goes to the kitchen.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s5",
+              "text": {
+                "full": "يَنْظُرُ تَحْتَ الطَّاوِلَةِ."
+              },
+              "translation": "He looks under the table.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s6",
+              "text": {
+                "full": "هُنَاكَ كِتَابٌ."
+              },
+              "translation": "There is a book.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s7",
+              "text": {
+                "full": "لَيْسَ هُنَاكَ كُرَةٌ."
+              },
+              "translation": "There is no ball there.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p3",
+          "sentences": [
+            {
+              "id": "c-s8",
+              "text": {
+                "full": "يَنْظُرُ إِلَى الْبَابِ."
+              },
+              "translation": "He looks at the door.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s9",
+              "text": {
+                "full": "لَيْسَ هُنَاكَ كُرَةٌ."
+              },
+              "translation": "There is no ball there.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p4",
+          "sentences": [
+            {
+              "id": "c-s10",
+              "text": {
+                "full": "ثُمَّ يَذْهَبُ إِلَى لَيْلَى."
+              },
+              "translation": "Then he goes to Layla.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p5",
+          "sentences": [
+            {
+              "id": "c-s11",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «يَا لَيْلَى، هَلْ عِنْدَكِ الْكُرَةُ؟»"
+              },
+              "translation": "Khalid says, “Layla, do you have the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p6",
+          "sentences": [
+            {
+              "id": "c-s12",
+              "text": {
+                "full": "تَقُولُ لَيْلَى: «لَا، لَيْسَ عِنْدِي كُرَةٌ»."
+              },
+              "translation": "Layla says, “No, I don't have a ball.”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p7",
+          "sentences": [
+            {
+              "id": "c-s13",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «أُرِيدُ الْكُرَةَ!»"
+              },
+              "translation": "Khalid says, “I want the ball!”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p8",
+          "sentences": [
+            {
+              "id": "c-s14",
+              "text": {
+                "full": "تَنْظُرُ لَيْلَى إِلَى الْبَابِ."
+              },
+              "translation": "Layla looks at the door.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p9",
+          "sentences": [
+            {
+              "id": "c-s15",
+              "text": {
+                "full": "تَقُولُ لَيْلَى: «هُنَاكَ قِطٌّ عِنْدَ الْبَابِ»."
+              },
+              "translation": "Layla says, “There is a cat by the door.”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p10",
+          "sentences": [
+            {
+              "id": "c-s16",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «قِطٌّ؟»"
+              },
+              "translation": "Khalid says, “A cat?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p11",
+          "sentences": [
+            {
+              "id": "c-s17",
+              "text": {
+                "full": "يَذْهَبُ خَالِدٌ إِلَى الْبَابِ."
+              },
+              "translation": "Khalid goes to the door.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s18",
+              "text": {
+                "full": "هُنَاكَ الْقِطُّ الْكَبِيرُ."
+              },
+              "translation": "There is the big cat.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s19",
+              "text": {
+                "full": "الْقِطُّ جَالِسٌ عِنْدَ الْبَابِ."
+              },
+              "translation": "The cat is sitting by the door.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p12",
+          "sentences": [
+            {
+              "id": "c-s20",
+              "text": {
+                "full": "يَنْظُرُ خَالِدٌ إِلَى الْقِطِّ."
+              },
+              "translation": "Khalid looks at the cat.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s21",
+              "text": {
+                "full": "يَنْظُرُ الْقِطُّ إِلَى خَالِدٍ."
+              },
+              "translation": "The cat looks at Khalid.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p13",
+          "sentences": [
+            {
+              "id": "c-s22",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «يَا قِطُّ، هَلْ عِنْدَكَ الْكُرَةُ؟»"
+              },
+              "translation": "Khalid says, “Cat, do you have the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p14",
+          "sentences": [
+            {
+              "id": "c-s23",
+              "text": {
+                "full": "يَنْظُرُ الْقِطُّ إِلَى خَالِدٍ."
+              },
+              "translation": "The cat looks at Khalid.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s24",
+              "text": {
+                "full": "ثُمَّ يَنْظُرُ إِلَى الْأَرْضِ."
+              },
+              "translation": "Then it looks at the floor.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p15",
+          "sentences": [
+            {
+              "id": "c-s25",
+              "text": {
+                "full": "هُنَاكَ كُرَةٌ تَحْتَ الْقِطِّ!"
+              },
+              "translation": "There is a ball under the cat!",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p16",
+          "sentences": [
+            {
+              "id": "c-s26",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «الْكُرَةُ تَحْتَ الْقِطِّ!»"
+              },
+              "translation": "Khalid says, “The ball is under the cat!”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p17",
+          "sentences": [
+            {
+              "id": "c-s27",
+              "text": {
+                "full": "يُرِيدُ خَالِدٌ الْكُرَةَ."
+              },
+              "translation": "Khalid wants the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s28",
+              "text": {
+                "full": "لَكِنَّ الْقِطَّ جَالِسٌ عَلَى الْكُرَةِ!"
+              },
+              "translation": "But the cat is sitting on the ball!",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p18",
+          "sentences": [
+            {
+              "id": "c-s29",
+              "text": {
+                "full": "يَضْحَكُ خَالِدٌ."
+              },
+              "translation": "Khalid laughs.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p19",
+          "sentences": [
+            {
+              "id": "c-s30",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «يَا قِطُّ، هَلْ تُرِيدُ الْكُرَةَ؟»"
+              },
+              "translation": "Khalid says, “Cat, do you want the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p20",
+          "sentences": [
+            {
+              "id": "c-s31",
+              "text": {
+                "full": "الْقِطُّ يَنْظُرُ إِلَى الْكُرَةِ."
+              },
+              "translation": "The cat looks at the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s32",
+              "text": {
+                "full": "ثُمَّ يَقُومُ."
+              },
+              "translation": "Then it gets up.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p21",
+          "sentences": [
+            {
+              "id": "c-s33",
+              "text": {
+                "full": "الْآنَ الْكُرَةُ عِنْدَ الْبَابِ."
+              },
+              "translation": "Now the ball is by the door.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p22",
+          "sentences": [
+            {
+              "id": "c-s34",
+              "text": {
+                "full": "يَأْخُذُ خَالِدٌ الْكُرَةَ."
+              },
+              "translation": "Khalid takes the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s35",
+              "text": {
+                "full": "يَنْظُرُ الْقِطُّ إِلَى الْكُرَةِ."
+              },
+              "translation": "The cat looks at the ball.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p23",
+          "sentences": [
+            {
+              "id": "c-s36",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «هَلْ تُرِيدُ الْكُرَةَ؟»"
+              },
+              "translation": "Khalid says, “Do you want the ball?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p24",
+          "sentences": [
+            {
+              "id": "c-s37",
+              "text": {
+                "full": "يُعْطِي خَالِدٌ الْكُرَةَ لِلْقِطِّ."
+              },
+              "translation": "Khalid gives the ball to the cat.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s38",
+              "text": {
+                "full": "يَلْعَبُ الْقِطُّ بِالْكُرَةِ."
+              },
+              "translation": "The cat plays with the ball.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p25",
+          "sentences": [
+            {
+              "id": "c-s39",
+              "text": {
+                "full": "ثُمَّ تَرْجِعُ الْكُرَةُ إِلَى خَالِدٍ."
+              },
+              "translation": "Then the ball comes back to Khalid.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s40",
+              "text": {
+                "full": "يَأْخُذُ خَالِدٌ الْكُرَةَ."
+              },
+              "translation": "Khalid takes the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s41",
+              "text": {
+                "full": "ثُمَّ يُعْطِيهَا لِلْقِطِّ."
+              },
+              "translation": "Then he gives it to the cat.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p26",
+          "sentences": [
+            {
+              "id": "c-s42",
+              "text": {
+                "full": "تَذْهَبُ لَيْلَى إِلَى الْبَابِ."
+              },
+              "translation": "Layla goes to the door.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s43",
+              "text": {
+                "full": "تَنْظُرُ إِلَى خَالِدٍ."
+              },
+              "translation": "She looks at Khalid.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s44",
+              "text": {
+                "full": "تَنْظُرُ إِلَى الْقِطِّ."
+              },
+              "translation": "She looks at the cat.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p27",
+          "sentences": [
+            {
+              "id": "c-s45",
+              "text": {
+                "full": "تَقُولُ لَيْلَى: «يَا خَالِدُ، هَلْ عِنْدَكَ الْكُرَةُ الْآنَ؟»"
+              },
+              "translation": "Layla says, “Khalid, do you have the ball now?”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p28",
+          "sentences": [
+            {
+              "id": "c-s46",
+              "text": {
+                "full": "يَقُولُ خَالِدٌ: «لَا، الْكُرَةُ عِنْدَ الْقِطِّ!»"
+              },
+              "translation": "Khalid says, “No, the cat has the ball!”",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p29",
+          "sentences": [
+            {
+              "id": "c-s47",
+              "text": {
+                "full": "ثُمَّ تَرْجِعُ الْكُرَةُ إِلَى خَالِدٍ."
+              },
+              "translation": "Then the ball comes back to Khalid.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p30",
+          "sentences": [
+            {
+              "id": "c-s48",
+              "text": {
+                "full": "يَلْعَبُ خَالِدٌ مَعَ الْقِطِّ."
+              },
+              "translation": "Khalid plays with the cat.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s49",
+              "text": {
+                "full": "لَيْلَى تَلْعَبُ مَعَهُمَا."
+              },
+              "translation": "Layla plays with them.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p31",
+          "sentences": [
+            {
+              "id": "c-s50",
+              "text": {
+                "full": "الْكُرَةُ عِنْدَ خَالِدٍ."
+              },
+              "translation": "Khalid has the ball.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s51",
+              "text": {
+                "full": "ثُمَّ الْكُرَةُ عِنْدَ الْقِطِّ."
+              },
+              "translation": "Then the cat has the ball.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        },
+        {
+          "id": "c-p32",
+          "sentences": [
+            {
+              "id": "c-s52",
+              "text": {
+                "full": "الْآنَ خَالِدٌ سَعِيدٌ جِدًّا."
+              },
+              "translation": "Now Khalid is very happy.",
+              "audio": null,
+              "timing": null
+            },
+            {
+              "id": "c-s53",
+              "text": {
+                "full": "الْقِطُّ سَعِيدٌ جِدًّا."
+              },
+              "translation": "The cat is very happy.",
+              "audio": null,
+              "timing": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "v-ball",
+      "headword": {
+        "full": "الْكُرَة"
+      },
+      "gloss": "the ball",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s1",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s5",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s7",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s8",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "a-s10",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "a-s11",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "a-s13",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s1",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s7",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s9",
+          "tokens": [
+            6,
+            7
+          ]
+        },
+        {
+          "sentence": "b-s10",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "b-s11",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s16",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s18",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s19",
+          "tokens": [
+            6,
+            7
+          ]
+        },
+        {
+          "sentence": "b-s20",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s22",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s24",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s25",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s1",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s7",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s9",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s11",
+          "tokens": [
+            6,
+            7
+          ]
+        },
+        {
+          "sentence": "c-s12",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "c-s13",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s22",
+          "tokens": [
+            6,
+            7
+          ]
+        },
+        {
+          "sentence": "c-s25",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s26",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s27",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s30",
+          "tokens": [
+            6,
+            7
+          ]
+        },
+        {
+          "sentence": "c-s31",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s33",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s34",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s36",
+          "tokens": [
+            4,
+            5
+          ]
+        },
+        {
+          "sentence": "c-s37",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s39",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s45",
+          "tokens": [
+            6,
+            7
+          ]
+        },
+        {
+          "sentence": "c-s46",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s47",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s50",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-cat",
+      "headword": {
+        "full": "الْقِطّ"
+      },
+      "gloss": "the cat",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s9",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s12",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s14",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s12",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s14",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s18",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s19",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s20",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s23",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s24",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s25",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s27",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s15",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s16",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s18",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s20",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s22",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s23",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s25",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s26",
+          "tokens": [
+            4,
+            5
+          ]
+        },
+        {
+          "sentence": "c-s28",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s30",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s31",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s35",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s37",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s41",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s44",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s46",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "c-s48",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s51",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s53",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-door",
+      "headword": {
+        "full": "الْبَاب"
+      },
+      "gloss": "the door",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s9",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "b-s12",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "b-s13",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s8",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s14",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s15",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "c-s17",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s33",
+          "tokens": [
+            3,
+            4
+          ]
+        },
+        {
+          "sentence": "c-s42",
+          "tokens": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-under",
+      "headword": {
+        "full": "تَحْتَ"
+      },
+      "gloss": "under",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s10",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s5",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s16",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s5",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s25",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s26",
+          "tokens": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-wants",
+      "headword": {
+        "full": "يُرِيدُ"
+      },
+      "gloss": "wants",
+      "note": "أُرِيدُ = I want · تُرِيدُ = you want",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s1",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s11",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s1",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s11",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s19",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "c-s1",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s13",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s27",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s30",
+          "tokens": [
+            5,
+            6
+          ]
+        },
+        {
+          "sentence": "c-s36",
+          "tokens": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-not-have",
+      "headword": {
+        "full": "لَيْسَ عِنْدَهُ"
+      },
+      "gloss": "doesn't have",
+      "note": "لَيْسَ عِنْدِي = I don't have",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s2",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s8",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s2",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s10",
+          "tokens": [
+            3,
+            5
+          ]
+        },
+        {
+          "sentence": "c-s2",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s12",
+          "tokens": [
+            3,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-there-is",
+      "headword": {
+        "full": "هُنَاكَ"
+      },
+      "gloss": "there is",
+      "note": "لَيْسَ هُنَاكَ = there isn't",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s5",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s9",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s6",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s12",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s6",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s9",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s15",
+          "tokens": [
+            2,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s18",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s25",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-goes",
+      "headword": {
+        "full": "يَذْهَبُ إِلَى"
+      },
+      "gloss": "goes to",
+      "note": "تَذْهَبُ = she goes",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s3",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "a-s6",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s4",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s8",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "b-s13",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s4",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s10",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s17",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s42",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-looks",
+      "headword": {
+        "full": "يَنْظُرُ إِلَى"
+      },
+      "gloss": "looks at",
+      "note": "تَنْظُرُ = she looks",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s4",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s5",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s20",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s23",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s5",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s8",
+          "tokens": [
+            0,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s14",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s20",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s23",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s31",
+          "tokens": [
+            1,
+            3
+          ]
+        },
+        {
+          "sentence": "c-s35",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s43",
+          "tokens": [
+            0,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-takes",
+      "headword": {
+        "full": "يَأْخُذُ"
+      },
+      "gloss": "takes",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s13",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s22",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s34",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s40",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-gives",
+      "headword": {
+        "full": "يُعْطِي"
+      },
+      "gloss": "gives",
+      "note": "يُعْطِيهَا = gives it",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "b-s24",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s37",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s41",
+          "tokens": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-plays",
+      "headword": {
+        "full": "يَلْعَبُ مَعَ"
+      },
+      "gloss": "plays with",
+      "note": "تَلْعَبُ = she plays",
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "a-s14",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s25",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "b-s27",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s38",
+          "tokens": [
+            0,
+            1
+          ]
+        },
+        {
+          "sentence": "c-s48",
+          "tokens": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sitting",
+      "headword": {
+        "full": "جَالِس"
+      },
+      "gloss": "sitting",
+      "note": null,
+      "image": null,
+      "audio": null,
+      "transliteration": null,
+      "frequencyRank": null,
+      "anchors": [
+        {
+          "sentence": "b-s15",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "b-s18",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s19",
+          "tokens": [
+            1,
+            2
+          ]
+        },
+        {
+          "sentence": "c-s28",
+          "tokens": [
+            2,
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "activities": {
+    "comprehension": {
+      "id": "comprehension",
+      "version": 1,
+      "instructions": "Answer the questions about the story. Each answer links back to the sentence that shows it.",
+      "items": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "prompt": "مَاذَا يُرِيدُ خَالِدٌ؟",
+          "options": [
+            {
+              "id": "o1",
+              "text": "الْكُرَةَ"
+            },
+            {
+              "id": "o2",
+              "text": "الْكِتَابَ"
+            },
+            {
+              "id": "o3",
+              "text": "الْقِطَّ"
+            }
+          ],
+          "answer": "o1",
+          "explanation": "Khalid wants the ball. The whole story is about finding it.",
+          "evidence": [
+            "a-s1",
+            "b-s1"
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "truefalse",
+          "statement": "الْكُرَةُ فِي الْمَطْبَخِ.",
+          "answer": false,
+          "correction": "الْكُرَةُ تَحْتَ الْقِطِّ.",
+          "explanation": "Khalid looks in the kitchen, but there is no ball there. It is under the cat.",
+          "evidence": [
+            "a-s5",
+            "a-s10"
+          ]
+        },
+        {
+          "id": "q3",
+          "type": "sequence",
+          "prompt": "Put the events in order.",
+          "steps": [
+            {
+              "id": "e1",
+              "text": "يَذْهَبُ إِلَى الْمَطْبَخِ."
+            },
+            {
+              "id": "e2",
+              "text": "ثُمَّ يَذْهَبُ إِلَى لَيْلَى."
+            },
+            {
+              "id": "e3",
+              "text": "يَقُومُ الْقِطُّ."
+            },
+            {
+              "id": "e4",
+              "text": "يَلْعَبُ خَالِدٌ مَعَ الْقِطِّ."
+            }
+          ],
+          "explanation": "First the kitchen, then Layla. The cat gets up, and in the end Khalid plays with the cat.",
+          "evidence": [
+            "a-s3",
+            "a-s6",
+            "a-s12",
+            "a-s14"
+          ]
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "prompt": "لِمَاذَا يَضْحَكُ خَالِدٌ؟",
+          "options": [
+            {
+              "id": "o1",
+              "text": "لِأَنَّ الْقِطَّ جَالِسٌ عَلَى الْكُرَةِ."
+            },
+            {
+              "id": "o2",
+              "text": "لِأَنَّ الْكُرَةَ عِنْدَ لَيْلَى."
+            },
+            {
+              "id": "o3",
+              "text": "لِأَنَّ الْكِتَابَ تَحْتَ الطَّاوِلَةِ."
+            }
+          ],
+          "answer": "o1",
+          "explanation": "Khalid laughs when he sees the cat sitting on his ball.",
+          "evidence": [
+            "b-s17",
+            "b-s18"
+          ]
+        },
+        {
+          "id": "q5",
+          "type": "shortanswer",
+          "prompt": "مَعَ مَنْ يَلْعَبُ خَالِدٌ؟",
+          "hint": "Type one word in Arabic. Vowel marks are optional.",
+          "accepted": [
+            "الْقِطِّ",
+            "الْقِطُّ",
+            "قِطٍّ"
+          ],
+          "rules": "default",
+          "explanation": "At the end Khalid plays with the cat (مَعَ الْقِطِّ).",
+          "evidence": [
+            "a-s14"
+          ]
+        }
+      ]
+    }
+  },
+  "production": {
+    "id": "retell",
+    "type": "retell",
+    "version": 1,
+    "instructions": "Retell the story in Arabic. Use the word bank and the sentence starters. Short sentences are fine.",
+    "pictures": [
+      {
+        "src": null,
+        "alt": "Khalid looks in the kitchen."
+      },
+      {
+        "src": null,
+        "alt": "Khalid asks Layla."
+      },
+      {
+        "src": null,
+        "alt": "The cat is sitting on the ball."
+      },
+      {
+        "src": null,
+        "alt": "Khalid plays with the cat."
+      }
+    ],
+    "wordBank": [
+      "خَالِد",
+      "يُرِيد",
+      "الْكُرَة",
+      "لَيْسَ عِنْدَهُ",
+      "الْمَطْبَخ",
+      "لَيْلَى",
+      "الْقِطّ",
+      "تَحْتَ",
+      "يَلْعَبُ مَعَ"
+    ],
+    "starters": [
+      "خَالِدٌ يُرِيدُ …",
+      "لَيْسَ هُنَاكَ …",
+      "الْكُرَةُ تَحْتَ …",
+      "يَلْعَبُ خَالِدٌ مَعَ …"
+    ],
+    "extraPrompts": [
+      {
+        "id": "personal",
+        "en": "What do you look for at home? Where do you find it? Write one or two sentences.",
+        "starter": "أَنَا أُرِيدُ …"
+      },
+      {
+        "id": "ending",
+        "en": "Write a different ending. Where is the ball now?",
+        "starter": "الْآنَ الْكُرَةُ …"
+      }
+    ]
+  },
+  "related": []
+}
