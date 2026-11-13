@@ -1,4 +1,41 @@
 {
   "generatedBy": "scripts/validate.mjs",
-  "stories": []
+  "stories": [
+    {
+      "id": "story-0001",
+      "slug": "khalid-and-the-ball",
+      "status": "published",
+      "contentState": "sample",
+      "contentVersion": 1,
+      "featured": true,
+      "title": {
+        "ar": "خَالِدٌ وَالْكُرَةُ",
+        "en": "Khalid and the ball"
+      },
+      "description": {
+        "ar": "خَالِدٌ يُرِيدُ الْكُرَةَ. أَيْنَ الْكُرَةُ؟",
+        "en": "Khalid wants his ball, but it isn't anywhere he looks."
+      },
+      "level": "level-0",
+      "topics": [
+        "home",
+        "animals"
+      ],
+      "collections": [
+        "khalid"
+      ],
+      "course": null,
+      "unit": null,
+      "readingMinutes": 2,
+      "cover": {
+        "src": null,
+        "alt": "Illustration pending: Khalid looking for his ball at home."
+      },
+      "focus": [
+        "الْكُرَة",
+        "الْقِطّ",
+        "الْبَاب"
+      ]
+    }
+  ]
 }

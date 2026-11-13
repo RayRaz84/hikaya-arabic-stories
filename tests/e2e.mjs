@@ -30,7 +30,10 @@ const server = spawn('python3', ['-m', 'http.server', '8097', '--bind', '127.0.0
 await new Promise((r) => setTimeout(r, 800));
 await mkdir(shots, { recursive: true });
 const browser = await chromium.launch();
-const story = JSON.parse(await readFile(storyFile, 'utf8'));
+const original = await readFile(storyFile, 'utf8');
+// Tests run against a draft copy of the story and put the real file back at the end.
+const story = { ...JSON.parse(original), status: 'draft' };
+await writeFile(storyFile, JSON.stringify(story, null, 2) + '\n'); validate();
 const page = async (width = 1280) => {
   const p = await (await browser.newContext({ viewport: { width, height: 900 } })).newPage();
   p.errors = [];
@@ -273,6 +276,7 @@ try {
 } finally {
   await browser.close();
   server.kill();
+  await writeFile(storyFile, original); validate();
 }
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length) process.exit(1);
