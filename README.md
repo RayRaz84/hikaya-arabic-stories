@@ -36,4 +36,6 @@ A story's own recording plays when the story file has one (`readings[].audio.src
 
 ## Hosting
 
-The original site is hosted at https://hikaya-arabic-stories-nov8.grittycedar3.chatgpt.site. GitHub pushes are not automatically synchronized with Sites. Serve `dist/` when deploying to another static host, and run the validator first.
+`main` deploys to GitHub Pages automatically through `.github/workflows/pages.yml`: it validates the stories, then publishes `dist/`. The site is at https://rayraz84.github.io/hikaya-arabic-stories/ once Pages is turned on (Settings → Pages → Source: GitHub Actions).
+
+The original version is still hosted on Sites at https://hikaya-arabic-stories-nov8.grittycedar3.chatgpt.site. Sites is not synchronized with GitHub; it only changes when redeployed from ChatGPT.
