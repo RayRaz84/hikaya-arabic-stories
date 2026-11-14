@@ -32,7 +32,7 @@ await mkdir(shots, { recursive: true });
 const browser = await chromium.launch();
 const original = await readFile(storyFile, 'utf8');
 // Tests run against a draft copy of the story and put the real file back at the end.
-const story = { ...JSON.parse(original), status: 'draft' };
+const story = { ...JSON.parse(original), status: 'draft', contentState: 'sample' };
 await writeFile(storyFile, JSON.stringify(story, null, 2) + '\n'); validate();
 const page = async (width = 1280) => {
   const p = await (await browser.newContext({ viewport: { width, height: 900 } })).newPage();
