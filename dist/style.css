@@ -87,3 +87,8 @@
 @media (max-width:640px){.player{margin:20px -24px -24px;padding:8px 14px}.fc-word{font-size:34px}.speak-line{font-size:24px}}
 .tr-modes [role=radio][aria-checked=true]{background:var(--green);border-color:var(--green);color:#fff}
 .tok{white-space:nowrap}
+.size-ctl{display:flex;align-items:center;gap:6px}
+.size-ctl output{font-size:13px;color:var(--muted);min-width:3.2em;text-align:center}
+.reader-controls .size-ctl button:disabled{opacity:.45;cursor:default}
+.story-text,.speak-line{font-size:calc(26px * var(--ar-scale,1))}
+@media(max-width:580px){.story-text,.speak-line{font-size:calc(24px * var(--ar-scale,1))}}
