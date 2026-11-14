@@ -79,6 +79,27 @@ try {
     await p.context().close();
   });
 
+  await test('text size: larger and smaller, stops at the limits, remembered after refresh', async () => {
+    const p = await page(390);
+    await openSample(p);
+    const size = () => p.locator('#story-text').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+    const start = await size();
+    assert((await p.locator('#size-out').textContent()) === '١٠٠٪', 'should start at 100%');
+    await p.locator('[data-size="1"]').click();
+    await p.locator('[data-size="1"]').click();
+    const bigger = await size();
+    assert(bigger > start, 'text did not grow');
+    for (let i = 0; i < 4; i++) if (await p.locator('[data-size="1"]').isEnabled()) await p.locator('[data-size="1"]').click();
+    assert(await p.locator('[data-size="1"]').isDisabled(), 'larger button should stop at the maximum');
+    await p.reload(); await p.waitForSelector('#reader[open] .sentence');
+    assert((await p.locator('#size-out').textContent()) === '١٥٠٪', 'size not remembered after refresh');
+    for (let i = 0; i < 6; i++) if (await p.locator('[data-size="-1"]').isEnabled()) await p.locator('[data-size="-1"]').click();
+    assert(await p.locator('[data-size="-1"]').isDisabled() && (await size()) < start, 'smaller button should go below 100% and stop');
+    const over = await p.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    assert(over <= 0, 'large text must not cause sideways scrolling');
+    await p.context().close();
+  });
+
   await test('translation: off by default, one sentence, all, then off', async () => {
     const p = await page(390);
     await openSample(p);
