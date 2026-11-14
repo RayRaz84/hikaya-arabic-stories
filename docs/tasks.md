@@ -51,7 +51,7 @@ Status: To do · In progress (branch) · In review (PR link) · Done · Blocked 
 
 | # | Task | Owner | Status |
 |---|---|---|---|
-| 20 | Validator checks: version word counts, allowed connectors, missing vowel marks, ما عنده | Claude | To do |
+| 20 | Validator checks: version word counts, allowed connectors, missing vowel marks, ما عنده | Claude | In review (claude/validator-language-checks) |
 | 21 | Vocabulary-encounter report across all stories | Claude | To do |
 | 22 | Accessibility audit; test on Safari/iPhone and Firefox | Claude | To do |
 | 23 | Click through the live site on phone and computer | Owner | To do |
