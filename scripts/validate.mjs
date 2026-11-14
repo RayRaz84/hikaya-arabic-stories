@@ -12,7 +12,7 @@
 import { readFile, readdir, writeFile, access } from 'node:fs/promises';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { tokenize } from './text.js';
+import { tokenize, splitPunctuation } from './text.js';
 
 // Paths in story files (images, audio) are relative to dist/, the folder that is served.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
@@ -32,6 +32,22 @@ const warnings = [];
 
 const exists = async (p) => access(p).then(() => true, () => false);
 const isNonEmptyString = (v) => typeof v === 'string' && v.trim().length > 0;
+
+// Language checks
+const WORD_RANGES = { A: [40, 60], B: [80, 120], C: [150, 220] };
+const HARAKAT = /[ً-ْٰ]/;
+const bare = (t) => String(t).replace(/[ً-ٰٟـ]/g, '');
+/** Arabic words in a text, without surrounding punctuation. */
+const arabicWords = (text) => tokenize(text ?? '').map((t) => splitPunctuation(t).word).filter((w) => /[ء-ي]/.test(w));
+const OTHER_CONNECTORS = new Set(['و', 'أو', 'لذلك', 'لهذا', 'عندما', 'بينما', 'حينما', 'إذا', 'لو', 'كي', 'لكي', 'حتى', 'بل']);
+// shortcut: catches standalone connectors and وال… (و + definite noun); misses و attached to verbs, upgrade with a word list if that matters.
+const isOtherConnector = (w) => OTHER_CONNECTORS.has(w) || /^وال/.test(w);
+/** Every Arabic string in a story, with its JSON path. Skips typed accepted answers and interface labels (version tabs). */
+function* arabicStrings(node, path = '') {
+  if (typeof node === 'string') { if (/[ء-ي]/.test(node)) yield [path, node]; return; }
+  if (Array.isArray(node)) { for (const [i, v] of node.entries()) yield* arabicStrings(v, `${path}[${i}]`); return; }
+  if (node && typeof node === 'object') for (const [k, v] of Object.entries(node)) if (k !== 'accepted' && k !== 'label') yield* arabicStrings(v, path ? `${path}.${k}` : k);
+}
 
 async function main() {
   const config = JSON.parse(await readFile(join(root, 'content/config.json'), 'utf8'));
@@ -144,6 +160,28 @@ async function main() {
           }
         }
       }
+    }
+
+    // Language rules from docs/language-guidelines.md. They block a published story;
+    // a draft only gets warnings so writers can save work in progress.
+    const rule = s.status === 'published' ? err : warn;
+    const versionIds = (s.readings || []).map((r) => r.id);
+    if (!['A', 'B', 'C'].every((v) => versionIds.includes(v))) rule('needs three versions with ids A, B and C');
+    for (const r of s.readings || []) {
+      const range = WORD_RANGES[r.id];
+      if (!range) continue;
+      const words = (r.paragraphs || []).flatMap((p) => p.sentences || []).reduce((n, sn) => n + arabicWords(sn.text?.full).length, 0);
+      if (words < range[0] || words > range[1]) rule(`version ${r.id} has ${words} words; the guideline is ${range[0]}–${range[1]}`);
+      for (const sn of (r.paragraphs || []).flatMap((p) => p.sentences || [])) {
+        // Heuristic, so always a warning: a listed word may be a preposition in context.
+        const found = arabicWords(sn.text?.full).filter((w) => isOtherConnector(bare(w)));
+        if (found.length) warn(`sentence ${sn.id}: possible connector outside لكن، لأن، الآن، جدًا، ثم: ${found.join('، ')}`);
+      }
+    }
+    for (const [path, text] of arabicStrings(s)) {
+      if (/(^|\s)ما\s+عند/.test(bare(text))) rule(`${path}: uses ما عند…; the guidelines use ليس عند…`);
+      const unvowelled = arabicWords(text).filter((w) => bare(w).length > 1 && !HARAKAT.test(w));
+      if (unvowelled.length) rule(`${path}: not fully vowelled (${unvowelled.slice(0, 3).join('، ')})`);
     }
 
     // Vocabulary

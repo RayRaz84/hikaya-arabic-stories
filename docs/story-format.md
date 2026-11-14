@@ -37,6 +37,7 @@ Question items (`items`), each with `id`, `explanation` (English) and `evidence`
 2. An editor scores it against NQS (85+, all five integrity tests, 4/5 on motivation, cause and effect and ending).
 3. Copy an existing story file, fill it in, keep `status: "draft"`.
 4. Run `node scripts/validate.mjs`. Fix every error (missing fields, duplicate ids, broken references, missing answers, missing files). It also rebuilds `dist/content/index.json`, the list the library reads.
+   It also checks the language rules: versions A, B and C with 40–60 / 80–120 / 150–220 words, every Arabic word vowelled (interface labels and typed accepted answers excepted), and no ما عند… (use ليس عند…). These are warnings on a draft and errors on a published story, so a story that breaks them cannot go live. Possible connectors other than لكن، لأن، الآن، جدًا، ثم (for example أو، عندما، و + noun) are always warnings, because a listed word can be a preposition in context.
 5. Preview privately at `/?preview=<slug>` (or `/#preview-<slug>`). Published stories have their own link: `/#story-<slug>`.
 6. After approval set `status` to `published` and `contentState` to `approved`, run the validator again, and deploy `dist/`.
 

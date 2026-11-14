@@ -4,7 +4,8 @@
 
 import { createRequire } from 'node:module';
 import { spawn, spawnSync } from 'node:child_process';
-import { mkdir, readFile, writeFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -17,7 +18,7 @@ const BASE = 'http://127.0.0.1:8097/';
 const SAMPLE = `${BASE}?preview=khalid-and-the-ball`;
 const shots = join(root, 'tests/screenshots');
 const storyFile = join(root, 'dist/content/stories/khalid-and-the-ball.json');
-const validate = () => spawnSync(process.execPath, [join(root, 'scripts/validate.mjs')], { encoding: 'utf8' });
+const validate = (...args) => spawnSync(process.execPath, [join(root, 'scripts/validate.mjs'), ...args], { encoding: 'utf8' });
 
 let passed = 0; const failures = [];
 async function test(name, fn) {
@@ -43,6 +44,26 @@ const page = async (width = 1280) => {
 const openSample = async (p) => { await p.goto(SAMPLE); await p.waitForSelector('#reader[open] .sentence'); };
 
 try {
+  await test('validator enforces the language rules: errors for published stories, warnings for drafts', async () => {
+    const bad = structuredClone({ ...JSON.parse(original) });
+    bad.readings[0].paragraphs[0].sentences[0].text.full += ' جِدًّا'.repeat(30); // version A above 60 words
+    const s1 = bad.readings[1].paragraphs[0].sentences[0];
+    s1.text.full += ' أَوْ مَا عِنْدَهُ';                                          // other connector + ما عنده
+    bad.activities.comprehension.items[0].options[1].text = 'الكتاب';             // unvowelled
+    const dir = await mkdtemp(join(tmpdir(), 'hikaya-lang-'));
+    try {
+      await writeFile(join(dir, `${bad.slug}.json`), JSON.stringify({ ...bad, status: 'published' }));
+      const r = validate('--dir', dir);
+      assert(r.status === 1, 'published story breaking the rules must fail');
+      for (const msg of ['version A has', 'uses ما عند', 'not fully vowelled (الكتاب)']) assert(r.stderr.includes(msg), `missing error: ${msg}`);
+      assert(r.stderr.includes('possible connector') && r.stderr.includes('أَوْ'), 'connector warning missing');
+      await writeFile(join(dir, `${bad.slug}.json`), JSON.stringify({ ...bad, status: 'draft' }));
+      const d = validate('--dir', dir);
+      assert(d.status === 0, `a draft should only warn:\n${d.stderr}`);
+      assert(d.stderr.includes('version A has'), 'draft should still be warned');
+    } finally { await rm(dir, { recursive: true }); }
+  });
+
   await test('empty library shows a clear message, no stray text, no sideways scroll (390 and 1280 px)', async () => {
     for (const w of [390, 1280]) {
       const p = await page(w);
@@ -76,6 +97,27 @@ try {
     assert(await p.locator('#s-b-s2').count() === 1, 'version B not shown');
     await p.locator('[data-reading="1"]').press('ArrowRight');
     assert(await p.locator('#s-a-s1').count() === 1, 'arrow key did not move back to A');
+    await p.context().close();
+  });
+
+  await test('text size: larger and smaller, stops at the limits, remembered after refresh', async () => {
+    const p = await page(390);
+    await openSample(p);
+    const size = () => p.locator('#story-text').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+    const start = await size();
+    assert((await p.locator('#size-out').textContent()) === '١٠٠٪', 'should start at 100%');
+    await p.locator('[data-size="1"]').click();
+    await p.locator('[data-size="1"]').click();
+    const bigger = await size();
+    assert(bigger > start, 'text did not grow');
+    for (let i = 0; i < 4; i++) if (await p.locator('[data-size="1"]').isEnabled()) await p.locator('[data-size="1"]').click();
+    assert(await p.locator('[data-size="1"]').isDisabled(), 'larger button should stop at the maximum');
+    await p.reload(); await p.waitForSelector('#reader[open] .sentence');
+    assert((await p.locator('#size-out').textContent()) === '١٥٠٪', 'size not remembered after refresh');
+    for (let i = 0; i < 6; i++) if (await p.locator('[data-size="-1"]').isEnabled()) await p.locator('[data-size="-1"]').click();
+    assert(await p.locator('[data-size="-1"]').isDisabled() && (await size()) < start, 'smaller button should go below 100% and stop');
+    const over = await p.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    assert(over <= 0, 'large text must not cause sideways scrolling');
     await p.context().close();
   });
 

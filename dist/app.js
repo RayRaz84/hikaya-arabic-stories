@@ -145,6 +145,7 @@ function renderReader(){
       ${s.readings.length > 1 ? `<div role="tablist" aria-label="نسخ الحكاية" class="version-tabs">${s.readings.map((x, i) => tab(x.label, i)).join('')}</div>` : ''}
       ${trOn ? `<div role="radiogroup" aria-label="الترجمة" class="tr-modes">${trBtn('off','بلا ترجمة')}${trBtn('pick','جملة بجملة')}${trBtn('all','كل الترجمة')}</div>` : ''}
       <button id="listen">▷ استمع</button>
+      <div class="size-ctl" role="group" aria-label="حجم النص"><button data-size="-1" aria-label="تصغير النص">أ−</button><output id="size-out" aria-live="polite"></output><button data-size="1" aria-label="تكبير النص">أ+</button></div>
     </div>
     <p class="reader-hint" lang="en" dir="ltr">Read for the meaning. Tap an underlined word for its meaning. Translation stays hidden until you ask for it.</p>
     <div id="audio-status" class="audio-status" role="status"></div>
@@ -165,7 +166,21 @@ function renderReader(){
     ${relatedHTML()}
     ${r.audio?.src ? playerHTML() : ''}`;
   bindReader();
+  applyScale();
   if (r.audio?.src) syncPlayer();
+}
+
+/* ---------- Text size (saved on this device) ---------- */
+const SCALES = [0.85, 1, 1.15, 1.3, 1.5];
+function textScale(){ try { const v = Number(localStorage.getItem('hikaya-text-scale')); return SCALES.includes(v) ? v : 1; } catch { return 1; } }
+function setScale(v){ if (!v) return; try { localStorage.setItem('hikaya-text-scale', String(v)); } catch {} applyScale(); }
+function applyScale(){
+  const v = textScale();
+  reader.style.setProperty('--ar-scale', v);
+  const out = document.querySelector('#size-out'); if (!out) return;
+  out.textContent = `${arNum(Math.round(v * 100))}٪`;
+  document.querySelector('[data-size="-1"]').disabled = v === SCALES[0];
+  document.querySelector('[data-size="1"]').disabled = v === SCALES.at(-1);
 }
 
 /* ---------- Questions ---------- */
@@ -271,6 +286,7 @@ function bindReader(){
       st.textContent = storyLink(story); // shown at once so it can be copied by hand if the clipboard is blocked
       navigator.clipboard?.writeText(storyLink(story)).then(() => { st.textContent = `نُسخ الرابط: ${storyLink(story)}`; }, () => {});
     }
+    else if (t.dataset.size) setScale(SCALES[SCALES.indexOf(textScale()) + Number(t.dataset.size)]);
     else if (t.id === 'listen') listen();
     else if (t.id === 'complete') { markRead(story); t.textContent = '✓ قرأت هذه الحكاية'; renderCards(document.querySelector('.filters .active')?.dataset.level || 'all'); }
     else if (t.id === 'next') { stopAudio(); const i = library.findIndex(x => x.slug === story.slug); openSlug(library[(i + 1) % library.length].slug); }
