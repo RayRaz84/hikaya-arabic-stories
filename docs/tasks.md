@@ -26,7 +26,7 @@ Status: To do · In progress (branch) · In review (PR link) · Done · Blocked 
 |---|---|---|---|
 | 8 | Review the drafted translations, glosses and questions for "خالد والكرة" | Owner | To do |
 | 9 | Draft the next stories (A/B/C) to the guidelines and NQS, as drafts | ChatGPT | To do |
-| 10 | Draft translations, vocabulary, questions and writing prompts for each new story | ChatGPT | To do |
+| 10 | Draft translations, vocabulary, questions, practice items (matching, gap fill, listen-and-choose; see `docs/story-format.md`) and writing prompts for each new story, and practice items for "خالد والكرة" | ChatGPT | To do |
 | 11 | Write teacher notes (oral-first sequence, circling questions, PQA prompts) | ChatGPT | To do |
 | 12 | Score each story against NQS and report (no approving) | ChatGPT | To do |
 
@@ -41,7 +41,7 @@ Status: To do · In progress (branch) · In review (PR link) · Done · Blocked 
 
 | # | Task | Owner | Status |
 |---|---|---|---|
-| 15 | Bring over matching, gap fill, listen-and-choose | Claude | To do |
+| 15 | Bring over matching, gap fill, listen-and-choose | Claude | In review (claude/practice-activities) |
 | 16 | Show the retelling picture sequence and teacher notes in the reader | Claude | To do |
 | 17 | Text-size control in the reader | Claude | In review (claude/text-size) |
 | 18 | A page file per story, so stories can be found by search engines | Claude | To do |

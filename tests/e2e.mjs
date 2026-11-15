@@ -223,6 +223,68 @@ try {
       validate();
     }
   });
+  await test('practice: matching, gap fill and listen-and-choose from the story file', async () => {
+    const p = await page(390);
+    const wav = (() => { const n = 12000, b = Buffer.alloc(44 + n); b.write('RIFF', 0); b.writeUInt32LE(36 + n, 4); b.write('WAVEfmt ', 8); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22); b.writeUInt32LE(8000, 24); b.writeUInt32LE(8000, 28); b.writeUInt16LE(1, 32); b.writeUInt16LE(8, 34); b.write('data', 36); b.writeUInt32LE(n, 40); b.fill(128, 44); return b; })();
+    const s = structuredClone(story);
+    s.readings[0].paragraphs[0].sentences[0].audio = { src: 'test-s1.wav' };
+    s.vocabulary.find((v) => v.id === 'v-door').audio = { src: 'test-door.wav' };
+    s.activities.practice = [
+      { id: 'match', type: 'match', version: 1, instructions: 'Match each word to its meaning.', pairs: [{ vocab: 'v-ball' }, { vocab: 'v-cat' }, { vocab: 'v-door' }] },
+      { id: 'gaps', type: 'gapfill', version: 1, instructions: 'Choose the missing word.', items: [{ id: 'g1', sentence: 'a-s1', gap: [2, 3] }, { id: 'g2', sentence: 'a-s3', gap: [2, 3] }], distractors: ['v-cat'] },
+      { id: 'listen', type: 'listen', version: 1, instructions: 'Listen and choose.', items: [
+        { id: 'l1', play: { sentence: 'a-s1' }, options: [{ id: 'o1', sentence: 'a-s1' }, { id: 'o2', sentence: 'a-s2' }], answer: 'o1' },
+        { id: 'l2', play: { vocab: 'v-door' }, options: [{ id: 'o1', vocab: 'v-door' }, { id: 'o2', vocab: 'v-ball' }], answer: 'o1' },
+        { id: 'l3', play: { sentence: 'a-s2' }, options: [{ id: 'o1', sentence: 'a-s2' }, { id: 'o2', sentence: 'a-s1' }], answer: 'o1' }] },
+    ];
+    await p.route('**/content/stories/khalid-and-the-ball.json', (r) => r.fulfill({ json: s }));
+    await p.route('**/test-*.wav', (r) => r.fulfill({ body: wav, contentType: 'audio/wav' }));
+    await openSample(p);
+    const act = (id) => p.locator(`[data-act="${id}"]`);
+
+    // Matching: one wrong pair is reported with its meaning and a link to the story.
+    await act('match').locator('[data-prcheck]').click();
+    assert((await act('match').textContent()).includes('Answer every item first'), 'must ask for all answers first');
+    for (const v of ['v-ball', 'v-cat']) await act('match').locator(`[data-pr="match:${v}"]`).selectOption(v);
+    await act('match').locator('[data-pr="match:v-door"]').selectOption('v-ball');
+    await act('match').locator('[data-prcheck]').click();
+    const mf = await act('match').locator('.feedback-box').textContent();
+    assert(mf.includes('٢ من ٣') && mf.includes('the door'), `match feedback wrong: ${mf}`);
+
+    // Gap fill: the answer is the gapped word without its punctuation; the bank includes the distractor.
+    const bank = await act('gaps').locator('.bank span').allTextContents();
+    assert(bank.includes('الْكُرَةَ') && bank.includes('الْمَطْبَخِ') && bank.includes('الْقِطّ'), `bank wrong: ${bank}`);
+    await act('gaps').locator('[data-pr="gaps:g1"]').selectOption('الْكُرَةَ');
+    await act('gaps').locator('[data-pr="gaps:g2"]').selectOption('الْمَطْبَخِ');
+    await act('gaps').locator('[data-prcheck]').click();
+    assert((await act('gaps').locator('.feedback-box.ok').count()) === 1, 'gap fill should be all correct');
+
+    // Selections survive a re-render (switching translation mode).
+    await p.locator('[data-tr="all"]').click();
+    assert(await p.locator('[data-pr="gaps:g2"]').inputValue() === 'الْمَطْبَخِ', 'selection lost after re-render');
+
+    // Listen and choose: only items with a recording show; the hidden one is counted.
+    assert(await act('listen').locator('[data-litem]').count() === 2, 'item without audio must be hidden');
+    assert((await act('listen').textContent()).includes('1 more item appears'), 'hidden item not counted');
+    await act('listen').locator('[data-lplay="listen:l1"]').click();
+    await act('listen').locator('[data-lpick="listen:l2"][data-opt="o2"]').click();
+    await act('listen').locator('[data-prcheck="listen:l2"]').click();
+    const lf = await act('listen').locator('[data-litem="listen:l2"] .feedback-box').textContent();
+    assert(lf.includes('ليس تمامًا') && lf.includes('سمعت'), `listen feedback wrong: ${lf}`);
+    await act('listen').locator('[data-litem="listen:l2"] [data-evidence]').click();
+    assert(await p.evaluate(() => document.activeElement?.id?.startsWith('s-')), 'evidence link did not focus a sentence');
+    assert(!p.errors.length, p.errors.join(' | '));
+    await p.screenshot({ path: join(shots, 'reader-practice-390.png'), fullPage: false });
+    await p.context().close();
+  });
+
+  await test('without practice data, no practice section is shown', async () => {
+    const p = await page();
+    await openSample(p);
+    assert(await p.locator('#practice').count() === 0, 'practice section should not appear without data');
+    await p.context().close();
+  });
+
   await test('flashcards: flip, practice marks, summary and review of missed cards', async () => {
     const p = await page(390);
     await openSample(p);
