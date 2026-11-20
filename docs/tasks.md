@@ -43,7 +43,7 @@ Status: To do · In progress (branch) · In review (PR link) · Done · Blocked 
 |---|---|---|---|
 | 15 | Bring over matching, gap fill, listen-and-choose | Claude | To do |
 | 16 | Show the retelling picture sequence and teacher notes in the reader | Claude | To do |
-| 17 | Text-size control in the reader | Claude | To do |
+| 17 | Text-size control in the reader | Claude | In review (claude/text-size) |
 | 18 | A page file per story, so stories can be found by search engines | Claude | To do |
 | 19 | "How to use this site" page | Claude | To do |
 
