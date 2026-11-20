@@ -22,7 +22,8 @@ Each story is one JSON file in `dist/content/stories/<slug>.json`. The site read
 | anchor | `{sentence, tokens: [start, end)}`. Tokens are the sentence's space-separated words, counted from 0, so `[1, 3]` is the 2nd and 3rd word. Phrases are fine |
 | `activities.comprehension` | `instructions` (English) and `items` (below) |
 | `production` | Writing section: `instructions` (English), `wordBank`, `starters`, `extraPrompts` `[{id, en, starter}]` (personal response, new ending). `pictures` are stored for later |
-| `teacherNotes`, `activities.practice` | Stored for later; this site does not show them yet. Flashcards are built from `vocabulary` |
+| `activities.practice` | Optional practice section, shown only when present (flashcards are built from `vocabulary` separately):<br>`match`: `pairs` `[{vocab}]` (4–6 vocabulary ids)<br>`gapfill`: `items` `[{id, sentence, gap: [start, end)}]` plus optional `distractors` (vocabulary ids); the answer is the gapped word from the story<br>`listen`: `items` `[{id, play: {sentence} or {vocab}, options: [{id, sentence / vocab / image}], answer, explanation?}]`; an item appears only once its sentence or word has a recording |
+| `teacherNotes` | Stored for later; this site does not show it yet |
 
 Question items (`items`), each with `id`, `explanation` (English) and `evidence` (sentence ids):
 

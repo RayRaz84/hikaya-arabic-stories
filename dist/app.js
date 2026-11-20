@@ -13,7 +13,7 @@ const getJSON = path => fetch(path, {cache:'no-cache'}).then(r => { if (!r.ok) t
 let config = {levels:[], topics:[], answerRules:{default:{}}};
 let library = [];          // published index entries
 let story = null;          // the open story, with lookups added
-const ui = {reading:0, translation:'off', revealed:new Set(), answers:{}, fc:null, speak:0, prompt:0};
+const ui = {reading:0, translation:'off', revealed:new Set(), answers:{}, fc:null, speak:0, prompt:0, pr:{}};
 const freshCards = () => ({i:0, flipped:false, practice:false, onlyMissed:false, known:new Set(), missed:new Set()});
 
 /* ---------- Progress (this device only) ---------- */
@@ -123,7 +123,7 @@ async function openSlug(slug, {preview = false} = {}){
   if (raw.status !== 'published' && !preview) return;
   story = prepare(raw); story.preview = preview && raw.status !== 'published';
   stopAudio();
-  Object.assign(ui, {reading:0, translation:'off', answers:{}, fc:freshCards(), speak:0, prompt:0}); ui.revealed.clear();
+  Object.assign(ui, {reading:0, translation:'off', answers:{}, fc:freshCards(), speak:0, prompt:0, pr:{}}); ui.revealed.clear();
   // Each published story has its own link: …#story-<slug>
   if (!story.preview) { try { history.replaceState(null, '', `#story-${slug}`); } catch {} }
   document.querySelector('.reader-top-sub').textContent = `/ القصص / ${levelOf(story.level).short}`;
@@ -157,6 +157,7 @@ function renderReader(){
     }).join(' ')}</p>`).join('')}</div>
     <section class="glossary"><h3>كلمات من الحكاية</h3><div class="glossary-list">${s.vocabulary.map(v => `<details><summary>${esc(v.headword.full)}</summary><span lang="en" dir="ltr">${esc(v.gloss)}${v.note ? ` — ${esc(v.note)}` : ''}</span></details>`).join('')}</div></section>
     ${quizHTML()}
+    ${practiceHTML()}
     ${cardsHTML()}
     ${speakHTML()}
     ${writingHTML()}
@@ -276,6 +277,9 @@ function bindReader(){
     else if (t.dataset.check) { const it = comp().items.find(x => x.id === t.dataset.check); check(it, t.closest('.q')); }
     else if (t.dataset.evidence) showSentence(t.dataset.evidence);
     else if (t.dataset.fc) onCard(t.dataset.fc);
+    else if (t.dataset.prcheck) checkPractice(t.dataset.prcheck);
+    else if (t.dataset.lplay) { const [id, it] = t.dataset.lplay.split(':'); playClip(clipOf(practice().find(x => x.id === id).items.find(x => x.id === it).play)); }
+    else if (t.dataset.lpick) { ui.pr[t.dataset.lpick] = t.dataset.opt; t.parentElement.querySelectorAll('[data-lpick]').forEach(b => b.setAttribute('aria-pressed', String(b === t))); }
     else if (t.dataset.speak) onSpeak(t.dataset.speak);
     else if (t.dataset.prompt) { ui.prompt = Number(t.dataset.prompt); document.querySelector('#writing').outerHTML = writingHTML(); document.querySelector(`[data-prompt="${ui.prompt}"]`).focus(); }
     else if (t.dataset.chip) insertChip(t.dataset.chip);
@@ -291,7 +295,7 @@ function bindReader(){
     else if (t.id === 'complete') { markRead(story); t.textContent = '✓ قرأت هذه الحكاية'; renderCards(document.querySelector('.filters .active')?.dataset.level || 'all'); }
     else if (t.id === 'next') { stopAudio(); const i = library.findIndex(x => x.slug === story.slug); openSlug(library[(i + 1) % library.length].slug); }
   };
-  root.onchange = e => { if (e.target.id === 'pl-speed' && player) player.playbackRate = Number(e.target.value); };
+  root.onchange = e => { if (e.target.dataset.pr) ui.pr[e.target.dataset.pr] = e.target.value; else if (e.target.id === 'pl-speed' && player) player.playbackRate = Number(e.target.value); };
   root.oninput = e => {
     if (e.target.id === 'draft') return saveDraft();
     if (e.target.id === 'pl-seek') { ensurePlayer().currentTime = Number(e.target.value); return; }
@@ -307,6 +311,83 @@ function bindReader(){
 function quizItemRefresh(it){
   const tmp = document.createElement('div'); tmp.innerHTML = quizHTML();
   return tmp.querySelector(`.q[data-item="${it.id}"]`).outerHTML;
+}
+
+/* ---------- Practice: matching, gap fill, listen and choose. Rendered only from activities.practice in the story file ---------- */
+const practice = () => story.activities?.practice || [];
+const vocabWord = id => story.vocab.get(id)?.headword.full;
+const firstAnchor = id => story.vocab.get(id)?.anchors?.[0]?.sentence;
+const showBtn = sid => sid ? ` <button class="text-button evidence" data-evidence="${esc(sid)}">أرني في الحكاية ←</button>` : '';
+function gapParts(it){
+  const toks = tokenize(story.sentences.get(it.sentence).text.full), [a, b] = it.gap, part = toks.slice(a, b);
+  const first = splitPunct(part[0]), last = splitPunct(part.at(-1));
+  const answer = part.length === 1 ? first.word : [part[0].slice(first.lead.length), ...part.slice(1, -1), last.trail ? part.at(-1).slice(0, -last.trail.length) : part.at(-1)].join(' ');
+  return {before: [...toks.slice(0, a), first.lead].filter(Boolean).join(' '), after: last.trail + (toks.length > b ? ' ' + toks.slice(b).join(' ') : ''), answer};
+}
+/** A recording for a sentence or word: its own file, or a verified slice of the reading's recording. Never the device voice. */
+function clipOf(ref){
+  if (ref.vocab) { const src = story.vocab.get(ref.vocab)?.audio?.src; return src ? {src} : null; }
+  const s = story.sentences.get(ref.sentence); if (!s) return null;
+  if (s.audio?.src) return {src:s.audio.src};
+  const r = story.readings[s.reading];
+  return s.timing?.verified && r.audio?.src ? {src:r.audio.src, start:s.timing.start, end:s.timing.end} : null;
+}
+function playClip(c){
+  stopAudio(); player = new Audio(c.src); player.dataset.src = c.src;
+  if (c.start != null) {
+    player.addEventListener('loadedmetadata', () => { player.currentTime = c.start; }, {once:true});
+    stopAt = c.end; player.addEventListener('timeupdate', () => { if (stopAt != null && player.currentTime >= stopAt) { player.pause(); stopAt = null; } });
+  }
+  player.play().catch(() => {});
+}
+function practiceHTML(){
+  const html = practice().map(a => a.type === 'match' ? matchHTML(a) : a.type === 'gapfill' ? gapHTML(a) : a.type === 'listen' ? listenHTML(a) : '').join('');
+  return html ? `<section class="practice" id="practice"><h3>تمارين</h3>${html}</section>` : '';
+}
+const prBox = (a, title, body) => `<div class="pr" data-act="${esc(a.id)}"><h4>${title}</h4><p class="quiz-intro" lang="en" dir="ltr">${esc(a.instructions || '')}</p>${body}</div>`;
+const prCheck = key => `<button class="check-btn" data-prcheck="${esc(key)}">تحقّق</button><div class="pr-feedback" aria-live="polite"></div>`;
+function matchHTML(a){
+  const words = a.pairs.map(p => story.vocab.get(p.vocab)).filter(Boolean), glosses = shuffled(words.map(v => v.id), a.id);
+  return prBox(a, 'صِل الكلمة بمعناها', words.map(v => { const k = `${a.id}:${v.id}`;
+    return `<div class="match-row"><label for="m-${esc(k)}">${esc(v.headword.full)}</label><select id="m-${esc(k)}" data-pr="${esc(k)}" lang="en" dir="ltr"><option value="">Choose a meaning…</option>${glosses.map(g => `<option value="${esc(g)}" ${ui.pr[k] === g ? 'selected' : ''}>${esc(story.vocab.get(g).gloss)}</option>`).join('')}</select></div>`; }).join('') + prCheck(a.id));
+}
+function gapHTML(a){
+  const items = a.items.map(it => ({it, ...gapParts(it)}));
+  const bank = shuffled([...new Set([...items.map(x => x.answer), ...(a.distractors || []).map(vocabWord).filter(Boolean)])], a.id);
+  return prBox(a, 'أكمل الجملة', `<div class="bank" aria-label="كلمات للفراغات">${bank.map(w => `<span>${esc(w)}</span>`).join('')}</div>` +
+    items.map((x, i) => { const k = `${a.id}:${x.it.id}`;
+      return `<p class="gap-row"><span class="q-num">${arNum(i + 1)}.</span> ${esc(x.before)} <select data-pr="${esc(k)}" aria-label="الكلمة الناقصة في الجملة ${arNum(i + 1)}"><option value="">…</option>${bank.map(w => `<option value="${esc(w)}" ${ui.pr[k] === w ? 'selected' : ''}>${esc(w)}</option>`).join('')}</select>${esc(x.after)}</p>`; }).join('') + prCheck(a.id));
+}
+function listenHTML(a){
+  const items = a.items.filter(it => clipOf(it.play)), hidden = a.items.length - items.length;
+  if (!items.length) return prBox(a, 'استمع واختر', `<p class="audio-status">الصوت لهذا التمرين غير متاح بعد. <span lang="en" dir="ltr">Audio for this activity is not available yet.</span></p>`);
+  const label = o => o.image ? `<img src="${esc(o.image.src)}" alt="${esc(o.image.alt)}">` : o.sentence ? sentenceHTML(o.sentence) : esc(vocabWord(o.vocab));
+  return prBox(a, 'استمع واختر', items.map((it, i) => { const k = `${a.id}:${it.id}`;
+    return `<div class="q" data-litem="${esc(k)}"><p class="q-num">${arNum(i + 1)}</p><button class="listen-btn" data-lplay="${esc(k)}">▷ استمع</button><div class="quiz-options">${shuffled(it.options.map(o => o.id), k).map(id => { const o = it.options.find(x => x.id === id);
+      return `<button class="${o.image ? 'pic-opt' : ''}" data-lpick="${esc(k)}" data-opt="${esc(o.id)}" aria-pressed="${ui.pr[k] === o.id}">${label(o)}</button>`; }).join('')}</div>${prCheck(k)}</div>`; }).join('') +
+    (hidden ? `<p class="q-hint" lang="en" dir="ltr">${hidden} more ${hidden === 1 ? 'item appears' : 'items appear'} when ${hidden === 1 ? 'its' : 'their'} audio is added.</p>` : ''));
+}
+function checkPractice(key){
+  const [id, itemId] = key.split(':'), a = practice().find(x => x.id === id);
+  const box = itemId ? document.querySelector(`[data-litem="${CSS.escape(key)}"]`) : document.querySelector(`[data-act="${CSS.escape(id)}"]`);
+  const fb = box.querySelector('.pr-feedback');
+  const report = (right, total, lines) => { fb.innerHTML = `<div class="feedback-box ${right === total ? 'ok' : 'no'}"><p class="fb-title">${total === 1 ? (right ? 'صحيح!' : 'ليس تمامًا.') : `${arNum(right)} من ${arNum(total)} صحيحة.`}</p>${lines.join('')}</div>`; };
+  const missing = keys => keys.some(k => !ui.pr[k]) && (fb.innerHTML = `<p class="q-hint">أجب عن الكل أولًا. <span lang="en" dir="ltr">Answer every item first.</span></p>`, true);
+  if (a.type === 'match') {
+    const words = a.pairs.map(p => p.vocab); if (missing(words.map(v => `${id}:${v}`))) return;
+    const wrong = words.filter(v => ui.pr[`${id}:${v}`] !== v);
+    report(words.length - wrong.length, words.length, wrong.map(v => `<p><span class="ar-line">${esc(vocabWord(v))}</span> = <span lang="en" dir="ltr">${esc(story.vocab.get(v).gloss)}</span>${showBtn(firstAnchor(v))}</p>`));
+  }
+  if (a.type === 'gapfill') {
+    if (missing(a.items.map(it => `${id}:${it.id}`))) return;
+    const wrong = a.items.filter(it => ui.pr[`${id}:${it.id}`] !== gapParts(it).answer);
+    report(a.items.length - wrong.length, a.items.length, wrong.map(it => `<p>الكلمة الناقصة في الجملة ${arNum(a.items.indexOf(it) + 1)}: <span class="ar-line">${esc(gapParts(it).answer)}</span>${showBtn(it.sentence)}</p>`));
+  }
+  if (a.type === 'listen') {
+    if (missing([key])) return;
+    const it = a.items.find(x => x.id === itemId), heard = it.play.sentence ? sentenceHTML(it.play.sentence) : esc(vocabWord(it.play.vocab));
+    report(ui.pr[key] === it.answer ? 1 : 0, 1, [`<p>سمعت: <span class="ar-line">«${heard}»</span></p>`, it.explanation ? `<p lang="en" dir="ltr">${esc(it.explanation)}</p>` : '', `<p>${showBtn(it.play.sentence || firstAnchor(it.play.vocab))}</p>`]);
+  }
 }
 
 /* ---------- Flashcards: a review list, not a spaced-repetition schedule ---------- */

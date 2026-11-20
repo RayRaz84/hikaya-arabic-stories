@@ -92,3 +92,23 @@
 .reader-controls .size-ctl button:disabled{opacity:.45;cursor:default}
 .story-text,.speak-line{font-size:calc(26px * var(--ar-scale,1))}
 @media(max-width:580px){.story-text,.speak-line{font-size:calc(24px * var(--ar-scale,1))}}
+/* ---- Practice: matching, gap fill, listen and choose ---- */
+.practice{border-top:1px solid var(--line);margin-top:28px;padding-top:6px}
+.practice h3{font-size:23px;font-weight:500}
+.pr{margin-bottom:22px}
+.pr h4{font-size:20px;font-weight:500;margin:10px 0 2px}
+.match-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px;align-items:center;padding:4px 0;border-top:1px solid var(--line);max-width:560px}
+.match-row label{font-size:22px}
+.match-row select,.gap-row select{border:1px solid #cbd2be;border-radius:5px;padding:6px 10px;background:#fff;color:var(--ink);font-size:15px;min-height:40px}
+.gap-row{font-size:22px;line-height:2.4;margin:4px 0}
+.gap-row select{font-family:'Noto Naskh Arabic',serif;font-size:19px;min-width:110px;vertical-align:middle}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;padding:8px 10px;border:1px dashed #cbd2be;border-radius:6px}
+.bank span{border:1px solid var(--line);border-radius:99px;padding:0 12px;font-size:18px;background:#f7f8f2}
+.listen-btn{margin:4px 0 10px}
+.pic-opt img{display:block;width:120px;height:90px;object-fit:cover;border-radius:4px}
+@media(max-width:580px){.match-row{grid-template-columns:1fr}}
+.pr button{border:1px solid #cbd2be;background:transparent;border-radius:5px;padding:6px 13px;color:var(--ink);font-size:18px}
+.pr button[aria-pressed=true]{background:#e8ecdf;border-color:var(--green)}
+.pr .check-btn{background:var(--green);color:#fff;border:0;margin-top:10px;font-size:15px}
+.pr .listen-btn{background:#e8ecdf;font-size:15px}
+.pr .evidence{border:0;padding:0;color:var(--green);font-size:15px}
